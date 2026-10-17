@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>శ్రీ తెలుగు పంచాంగం • పండుగలు & వ్రతాలు (Festivals)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/cosmic.css">
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header Container -->
+  <div id="header-container"></div>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full space-y-8">
+
+    <!-- PAGE HERO TITLE -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-white/10 pb-4">
+      <div>
+        <div class="text-xs font-mono text-rose-400 uppercase tracking-widest">SACRED CELESTIAL OBSERVANCES</div>
+        <h2 class="text-3xl font-extrabold gold-nebula-text font-display">
+          ప్రధాన తెలుగు పండుగలు & వ్రతాలు (Festivals & Vratams)
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">
+          చాంద్రమాన మాసాల ప్రకారం జరుపుకునే సాంప్రదాయ తెలుగు పండుగలు మరియు వాటి ఆధ్యాత్మిక ప్రాశస్త్యం.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="/" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-white/10 text-slate-300 hover:bg-slate-800 transition">
+          🌌 హోమ్ పోర్టల్ ➔
+        </a>
+      </div>
+    </div>
+
+    <!-- SEARCH & FILTER -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div class="flex items-center gap-2 text-xs text-slate-300">
+        <span class="font-mono text-cyan-400">STATUS:</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-slate-900 border border-white/10">16 Major Celestial Celebrations</span>
+      </div>
+
+      <div class="relative min-w-[260px]">
+        <input type="text" id="festSearch" oninput="filterFestivals(this.value)" placeholder="Search festival (e.g. ఉగాది, Dasara)..." class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
+        <span class="absolute right-3 top-2 text-xs text-slate-500">🔍</span>
+      </div>
+    </div>
+
+    <!-- FESTIVALS GRID -->
+    <div id="festivals-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <!-- Populated dynamically via JavaScript -->
+    </div>
+
+  </main>
+
+  <footer class="border-t border-white/10 backdrop-blur-md bg-slate-950/80 py-6 text-center text-xs text-slate-500">
+    <p>శ్రీ తెలుగు పంచాంగం • చాంద్రమాన పండుగల వివరాలు</p>
+  </footer>
+
+  <script src="/cosmic.js"></script>
+  <script>
+    let allFestivalsData = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initStarfield();
+      renderCosmicHeader('festivals');
+      loadFestivals();
+    });
+
+    async function loadFestivals() {
+      const data = await fetchPanchangamData();
+      if (!data || !data.festivals) return;
+      allFestivalsData = data.festivals;
+      renderFestivalCards(allFestivalsData);
+    }
+
+    function renderFestivalCards(list) {
+      const container = document.getElementById('festivals-container');
+      const isTe = getStoredLang() === 'te';
+      container.innerHTML = '';
+
+      list.forEach(f => {
+        const card = document.createElement('div');
+        card.className = 'astra-card rounded-2xl p-5 flex flex-col justify-between hover:border-amber-400/40 transition group';
+
+        const fName = isTe ? f.name : (f.english || f.name);
+        const fMonth = isTe ? `${f.monthName} మాసం` : `${f.monthName} Masa`;
+        const fType = isTe ? f.type : (f.significance || 'Sacred Celebration');
+        const fDesc = isTe ? (f.significance || 'పవిత్ర పూజా విధానం మరియు విశేష పుణ్యఫల దినం.') : 'Sacred auspicious day dedicated to spiritual worship and festivities.';
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded-full bg-amber-950/80 text-amber-300 border border-amber-500/30 text-[10px] font-mono">
+                ${fMonth}
+              </span>
+              <span class="text-[11px] font-mono text-slate-400">${f.dateApprox || ''}</span>
+            </div>
+
+            <h4 class="text-lg font-bold text-slate-100 group-hover:text-amber-300 transition mt-1">
+              ${fName}
+            </h4>
+            <div class="text-xs text-cyan-400 mt-0.5">${fType}</div>
+
+            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+              ${fDesc}
+            </p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+            <span class="text-amber-300/80">${isTe ? 'చాంద్రమాన గణన' : 'Lunisolar System'}</span>
+            <span class="text-amber-400 font-mono">DETAILS ➔</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterFestivals(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        renderFestivalCards(allFestivalsData);
+        return;
+      }
+      const filtered = allFestivalsData.filter(f => 
+        f.name.toLowerCase().includes(q) || 
+        f.monthName.toLowerCase().includes(q) ||
+        f.type.toLowerCase().includes(q) ||
+        (f.english && f.english.toLowerCase().includes(q))
+      );
+      renderFestivalCards(filtered);
+    }
+
+    window.onDataStateChanged = () => {
+      renderCosmicHeader('festivals');
+      applyI18nTranslations();
+      loadFestivals();
+    };
+  </script>
+</body>
+</html>
