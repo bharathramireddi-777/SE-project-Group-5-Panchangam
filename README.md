@@ -45,8 +45,6 @@ npm install
 ```
 - Run the server
 ```powershell
-```
-```
 node server.js
 ```
 
