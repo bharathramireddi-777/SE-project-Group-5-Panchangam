@@ -37,8 +37,8 @@ An authentic, astronomical Luni-Solar Almanac & Astrological Computation Engine 
 
 ## 🚀 Running the Project
 
+Run this in root directory:
 ```powershell
-cd C:\Users\bhara\.gemini\antigravity\scratch\telugu-panchangam
 node server.js
 ```
 
