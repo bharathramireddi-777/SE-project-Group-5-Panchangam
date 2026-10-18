@@ -38,7 +38,15 @@ An authentic, astronomical Luni-Solar Almanac & Astrological Computation Engine 
 ## 🚀 Running the Project
 
 Run this in root directory:
+
+- Install dependencies
 ```powershell
+npm install 
+```
+- Run the server
+```powershell
+```
+```
 node server.js
 ```
 
