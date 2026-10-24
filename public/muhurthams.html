@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>శ్రీ తెలుగు పంచాంగం • శుభ & అశుభ కాలాలు (Timings)</title>
+  <title>VedicAstro • Muhurthams & Timings (శుభ & అశుభ కాలాలు)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/cosmic.css">
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col overflow-x-hidden max-w-full w-full">
 
   <!-- Header Container -->
   <div id="header-container"></div>
@@ -18,18 +18,18 @@
     <!-- PAGE HERO TITLE -->
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-white/10 pb-4">
       <div>
-        <div class="text-xs font-mono text-cyan-400 uppercase tracking-widest">COSMIC WINDOWS & MUHURTHAMS</div>
-        <h2 class="text-3xl font-extrabold astra-gradient-text font-display">
+        <div class="text-xs font-mono text-cyan-400 uppercase tracking-widest" data-i18n="muh_page_tag">COSMIC WINDOWS & MUHURTHAMS</div>
+        <h2 class="text-3xl font-extrabold astra-gradient-text font-display" data-i18n="muh_page_title">
           శుభ & అశుభ కాలాలు (Timings & Muhurthams)
         </h2>
-        <p class="text-xs text-slate-400 mt-1">
+        <p class="text-xs text-slate-400 mt-1" data-i18n="muh_page_desc">
           సూర్యోదయం నుండి సూర్యాస్తమయం వరకు 8 విభాగాలలో రాహుకాల, యమగండ మరియు అమృత ఘడియల సమయాలు.
         </p>
       </div>
 
       <div class="flex items-center gap-2">
         <a href="/panchangam" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-cyan-500/30 text-cyan-300 hover:bg-slate-800 transition">
-          🪔 పంచాంగం ➔
+          🪔 <span data-i18n="nav_panchangam">పంచాంగం</span> ➔
         </a>
       </div>
     </div>
@@ -41,7 +41,7 @@
       <div class="astra-card rounded-3xl p-6 border-t-4 border-t-emerald-400 space-y-4">
         <div class="flex items-center justify-between">
           <h3 class="text-xl font-bold text-emerald-300 flex items-center gap-2">
-            <span>✨</span> <span>శుభ సమయాలు (Auspicious Timings)</span>
+            <span>✨</span> <span data-i18n="muh_shubha_title">శుభ సమయాలు (Auspicious Timings)</span>
           </h3>
           <span class="px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold font-mono">
             SHUBHA KALAM
@@ -52,8 +52,8 @@
           <!-- Abhijit Muhurtham -->
           <div class="p-4 bg-emerald-950/20 border border-emerald-500/20 rounded-2xl flex justify-between items-center hover:border-emerald-500/40 transition">
             <div>
-              <div class="text-base font-bold text-emerald-200">అభిజిత్ ముహూర్తం</div>
-              <div class="text-xs text-emerald-400/80 mt-0.5">మధ్యాహ్న కాల విజయ ముహూర్తం (సర్వకార్య సిద్ధి)</div>
+              <div class="text-base font-bold text-emerald-200" data-i18n="muh_abhijit_label">అభిజిత్ ముహూర్తం</div>
+              <div class="text-xs text-emerald-400/80 mt-0.5" data-i18n="muh_abhijit_sub">మధ్యాహ్న కాల విజయ ముహూర్తం (సర్వకార్య సిద్ధి)</div>
             </div>
             <div id="m-abhijit" class="text-sm font-mono font-bold text-emerald-100 bg-emerald-900/40 px-3 py-1.5 rounded-xl border border-emerald-500/30">
               11:41 AM - 12:29 PM
@@ -63,8 +63,8 @@
           <!-- Amrutha Kalam -->
           <div class="p-4 bg-emerald-950/20 border border-emerald-500/20 rounded-2xl flex justify-between items-center hover:border-emerald-500/40 transition">
             <div>
-              <div class="text-base font-bold text-emerald-200">అమృత కాలం</div>
-              <div class="text-xs text-emerald-400/80 mt-0.5">అమృత ఘడియలు (నూతన ప్రారంభాలకు ఉత్తమం)</div>
+              <div class="text-base font-bold text-emerald-200" data-i18n="muh_amrutha_label">అమృత కాలం</div>
+              <div class="text-xs text-emerald-400/80 mt-0.5" data-i18n="muh_amrutha_sub">అమృత ఘడియలు (నూతన ప్రారంభాలకు ఉత్తమం)</div>
             </div>
             <div id="m-amrutha" class="text-sm font-mono font-bold text-emerald-100 bg-emerald-900/40 px-3 py-1.5 rounded-xl border border-emerald-500/30">
               08:06 PM - 09:42 PM
@@ -74,8 +74,8 @@
           <!-- Brahma Muhurtham -->
           <div class="p-4 bg-emerald-950/20 border border-emerald-500/20 rounded-2xl flex justify-between items-center hover:border-emerald-500/40 transition">
             <div>
-              <div class="text-base font-bold text-emerald-200">బ్రహ్మ ముహూర్తం</div>
-              <div class="text-xs text-emerald-400/80 mt-0.5">సూర్యోదయ పూర్వ ధ్యాన, యోగ, పూజా సమయం</div>
+              <div class="text-base font-bold text-emerald-200" data-i18n="muh_brahma_label">బ్రహ్మ ముహూర్తం</div>
+              <div class="text-xs text-emerald-400/80 mt-0.5" data-i18n="muh_brahma_sub">సూర్యోదయ పూర్వ ధ్యాన, యోగ, పూజా సమయం</div>
             </div>
             <div id="m-brahma" class="text-sm font-mono font-bold text-emerald-100 bg-emerald-900/40 px-3 py-1.5 rounded-xl border border-emerald-500/30">
               04:30 AM - 05:18 AM
@@ -88,7 +88,7 @@
       <div class="astra-card rounded-3xl p-6 border-t-4 border-t-rose-500 space-y-4">
         <div class="flex items-center justify-between">
           <h3 class="text-xl font-bold text-rose-300 flex items-center gap-2">
-            <span>⚠️</span> <span>అశుభ / వర్జ్య కాలాలు (Prohibited Windows)</span>
+            <span>⚠️</span> <span data-i18n="muh_varjya_title">అశుభ / వర్జ్య కాలాలు (Prohibited Windows)</span>
           </h3>
           <span class="px-2.5 py-0.5 rounded-full bg-rose-950 text-rose-300 border border-rose-500/40 text-[10px] font-bold font-mono">
             VARJYA KALAM
@@ -99,8 +99,8 @@
           <!-- Rahu Kalam -->
           <div class="p-3.5 bg-rose-950/20 border border-rose-500/20 rounded-2xl flex justify-between items-center hover:border-rose-500/40 transition">
             <div>
-              <div class="text-sm font-bold text-rose-200">రాహుకాలం (Rahu Kalam)</div>
-              <div class="text-[11px] text-rose-400/80">నూతన కార్యాలు, ప్రయాణాలు నిషిద్ధం</div>
+              <div class="text-sm font-bold text-rose-200" data-i18n="muh_rahu_label">రాహుకాలం (Rahu Kalam)</div>
+              <div class="text-[11px] text-rose-400/80" data-i18n="muh_rahu_sub">నూతన కార్యాలు, ప్రయాణాలు నిషిద్ధం</div>
             </div>
             <div id="m-rahu" class="text-xs font-mono font-bold text-rose-100 bg-rose-900/40 px-2.5 py-1.5 rounded-xl border border-rose-500/30">
               09:05 AM - 10:35 AM
@@ -110,8 +110,8 @@
           <!-- Yamagandam -->
           <div class="p-3.5 bg-rose-950/20 border border-rose-500/20 rounded-2xl flex justify-between items-center hover:border-rose-500/40 transition">
             <div>
-              <div class="text-sm font-bold text-rose-200">యమగండం (Yamagandam)</div>
-              <div class="text-[11px] text-rose-400/80">మృత్యు కారక యమ భాగం</div>
+              <div class="text-sm font-bold text-rose-200" data-i18n="muh_yama_label">యమగండం (Yamagandam)</div>
+              <div class="text-[11px] text-rose-400/80" data-i18n="muh_yama_sub">మృత్యు కారక యమ భాగం</div>
             </div>
             <div id="m-yama" class="text-xs font-mono font-bold text-rose-100 bg-rose-900/40 px-2.5 py-1.5 rounded-xl border border-rose-500/30">
               01:34 PM - 03:04 PM
@@ -121,8 +121,8 @@
           <!-- Gulika Kalam -->
           <div class="p-3.5 bg-rose-950/20 border border-rose-500/20 rounded-2xl flex justify-between items-center hover:border-rose-500/40 transition">
             <div>
-              <div class="text-sm font-bold text-rose-200">గుళిక కాలం (Gulika Kalam)</div>
-              <div class="text-[11px] text-rose-400/80">శని పుత్రుని కాలం</div>
+              <div class="text-sm font-bold text-rose-200" data-i18n="muh_gulika_label">గుళిక కాలం (Gulika Kalam)</div>
+              <div class="text-[11px] text-rose-400/80" data-i18n="muh_gulika_sub">శని పుత్రుని కాలం</div>
             </div>
             <div id="m-gulika" class="text-xs font-mono font-bold text-rose-100 bg-rose-900/40 px-2.5 py-1.5 rounded-xl border border-rose-500/30">
               06:06 AM - 07:36 AM
@@ -132,8 +132,8 @@
           <!-- Durmuhurtham -->
           <div class="p-3.5 bg-rose-950/20 border border-rose-500/20 rounded-2xl flex justify-between items-center hover:border-rose-500/40 transition">
             <div>
-              <div class="text-sm font-bold text-rose-200">దుర్ముహూర్తం (Durmuhurtham)</div>
-              <div class="text-[11px] text-rose-400/80">శాస్త్ర ప్రకారం వర్జ్యమైన సమయం</div>
+              <div class="text-sm font-bold text-rose-200" data-i18n="muh_dur_label">దుర్ముహూర్తం (Durmuhurtham)</div>
+              <div class="text-[11px] text-rose-400/80" data-i18n="muh_dur_sub">శాస్త్ర ప్రకారం వర్జ్యమైన సమయం</div>
             </div>
             <div id="m-dur" class="text-xs font-mono font-bold text-rose-100 bg-rose-900/40 px-2.5 py-1.5 rounded-xl border border-rose-500/30">
               06:54 AM - 08:30 AM
@@ -143,8 +143,8 @@
           <!-- Varjyam -->
           <div class="p-3.5 bg-rose-950/20 border border-rose-500/20 rounded-2xl flex justify-between items-center hover:border-rose-500/40 transition">
             <div>
-              <div class="text-sm font-bold text-rose-200">వర్జ్యం (Varjyam / Tyajya)</div>
-              <div class="text-[11px] text-rose-400/80">నక్షత్ర త్యాజ్య కాలం (4 ఘడియలు = 96 నిమిషాలు)</div>
+              <div class="text-sm font-bold text-rose-200" data-i18n="muh_varjyam_label">వర్జ్యం (Varjyam / Tyajya)</div>
+              <div class="text-[11px] text-rose-400/80" data-i18n="muh_varjyam_sub">నక్షత్ర త్యాజ్య కాలం (4 ఘడియలు = 96 నిమిషాలు)</div>
             </div>
             <div id="m-varjyam" class="text-xs font-mono font-bold text-rose-100 bg-rose-900/40 px-2.5 py-1.5 rounded-xl border border-rose-500/30">
               02:30 PM - 04:06 PM
@@ -157,8 +157,8 @@
 
   </main>
 
-  <footer class="border-t border-white/10 backdrop-blur-md bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-    <p>శ్రీ తెలుగు పంచాంగం • శుభ ముహూర్త కాల విభజన</p>
+  <footer class="border-t border-white/[0.08] backdrop-blur-md bg-black/90 py-5 text-center text-xs text-zinc-400">
+    <p data-i18n="footer_text">VedicAstro • High-Precision Astronomical Vedic Almanac & Ephemeris Engine</p>
   </footer>
 
   <script src="/cosmic.js"></script>
@@ -166,6 +166,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       initStarfield();
       renderCosmicHeader('muhurthams');
+      applyI18nTranslations();
       loadMuhurthams();
     });
 

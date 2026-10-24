@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>శ్రీ తెలుగు పంచాంగం • మాస క్యాలెండర్ (Monthly Calendar)</title>
+  <title>VedicAstro • Telugu Calendar (మాస క్యాలెండర్)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/cosmic.css">
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col overflow-x-hidden max-w-full w-full">
 
   <!-- Universal Header Container -->
   <div id="header-container"></div>
@@ -47,45 +47,50 @@
     </div>
 
     <!-- CALENDAR GRID -->
-    <div class="astra-card rounded-2xl p-4 md:p-6 border border-white/10">
+    <div class="astra-card rounded-2xl p-4 md:p-6 border border-white/10 overflow-hidden">
       
-      <!-- Weekday Headers -->
-      <div id="cal-weekdays-header" class="grid grid-cols-7 gap-2 text-center text-xs font-bold uppercase pb-3 border-b border-white/10 font-mono tracking-wider">
-        <div class="text-rose-400">ఆది (Sun)</div>
-        <div class="text-slate-300">సోమ (Mon)</div>
-        <div class="text-slate-300">మంగళ (Tue)</div>
-        <div class="text-slate-300">బుధ (Wed)</div>
-        <div class="text-slate-300">గురు (Thu)</div>
-        <div class="text-slate-300">శుక్ర (Fri)</div>
-        <div class="text-amber-400">శని (Sat)</div>
-      </div>
+      <!-- Horizontal Scrollable Container for small screens -->
+      <div class="w-full overflow-x-auto scrollbar-thin pb-2">
+        <div class="min-w-[620px]">
+          <!-- Weekday Headers -->
+          <div id="cal-weekdays-header" class="grid grid-cols-7 gap-2 text-center text-xs font-bold uppercase pb-3 border-b border-white/10 font-mono tracking-wider">
+            <div class="text-rose-400">ఆది (Sun)</div>
+            <div class="text-slate-300">సోమ (Mon)</div>
+            <div class="text-slate-300">మంగళ (Tue)</div>
+            <div class="text-slate-300">బుధ (Wed)</div>
+            <div class="text-slate-300">గురు (Thu)</div>
+            <div class="text-slate-300">శుక్ర (Fri)</div>
+            <div class="text-amber-400">శని (Sat)</div>
+          </div>
 
-      <!-- Days Grid Cells -->
-      <div id="calendar-days-grid" class="grid grid-cols-7 gap-2 pt-3 min-h-[420px]">
-        <!-- Rendered dynamically -->
+          <!-- Days Grid Cells -->
+          <div id="calendar-days-grid" class="grid grid-cols-7 gap-2 pt-3 min-h-[420px]">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
       </div>
 
       <!-- Legend -->
       <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400">
         <div class="flex items-center gap-1.5">
           <span class="w-3 h-3 rounded-full bg-cyan-400/80 border border-cyan-300"></span>
-          <span id="leg-today">నేటి దినం (Today)</span>
+          <span id="leg-today" data-i18n="cal_leg_today">నేటి దినం (Today)</span>
         </div>
         <div class="flex items-center gap-1.5">
           <span class="w-3 h-3 rounded-full bg-amber-400/80 border border-amber-300"></span>
-          <span id="leg-pournami">పౌర్ణమి (Full Moon)</span>
+          <span id="leg-pournami" data-i18n="cal_leg_pournami">పౌర్ణమి (Full Moon)</span>
         </div>
         <div class="flex items-center gap-1.5">
           <span class="w-3 h-3 rounded-full bg-purple-700/80 border border-purple-500"></span>
-          <span id="leg-amavasya">అమావాస్య (New Moon)</span>
+          <span id="leg-amavasya" data-i18n="cal_leg_amavasya">అమావాస్య (New Moon)</span>
         </div>
         <div class="flex items-center gap-1.5">
           <span class="w-3 h-3 rounded-full bg-emerald-500/80 border border-emerald-400"></span>
-          <span id="leg-ekadashi">ఏకాదశి (Ekadashi)</span>
+          <span id="leg-ekadashi" data-i18n="cal_leg_ekadashi">ఏకాదశి (Ekadashi)</span>
         </div>
         <div class="flex items-center gap-1.5">
           <span class="w-3 h-3 rounded-full bg-rose-500/80 border border-rose-400"></span>
-          <span id="leg-festival">పండుగ (Festival)</span>
+          <span id="leg-festival" data-i18n="cal_leg_festival">పండుగ (Festival)</span>
         </div>
       </div>
     </div>
@@ -100,35 +105,13 @@
       </div>
     </div>
 
-    <!-- BOTTOM REDIRECTION TILES -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-      <a href="/" class="astra-card rounded-xl p-4 text-center hover:border-amber-400/60 transition group">
-        <span class="text-2xl block mb-1">☀️</span>
-        <div class="text-xs font-bold text-slate-200 group-hover:text-amber-300" data-i18n="nav_home">సౌర కుటుంబం</div>
-      </a>
-      <a href="/panchangam" class="astra-card rounded-xl p-4 text-center hover:border-cyan-400/60 transition group">
-        <span class="text-2xl block mb-1">🪔</span>
-        <div class="text-xs font-bold text-slate-200 group-hover:text-cyan-300" data-i18n="nav_panchangam">దైనిక పంచాంగం</div>
-      </a>
-      <a href="/raashulu" class="astra-card rounded-xl p-4 text-center hover:border-violet-400/60 transition group">
-        <span class="text-2xl block mb-1">♈</span>
-        <div class="text-xs font-bold text-slate-200 group-hover:text-violet-300" data-i18n="nav_raashulu">ద్వాదశ రాశులు</div>
-      </a>
-      <a href="/nakshatralu" class="astra-card rounded-xl p-4 text-center hover:border-amber-400/60 transition group">
-        <span class="text-2xl block mb-1">✨</span>
-        <div class="text-xs font-bold text-slate-200 group-hover:text-amber-300" data-i18n="nav_nakshatralu">27 నక్షత్రాలు</div>
-      </a>
-      <a href="/festivals" class="astra-card rounded-xl p-4 text-center hover:border-rose-400/60 transition group">
-        <span class="text-2xl block mb-1">🎉</span>
-        <div class="text-xs font-bold text-slate-200 group-hover:text-rose-300" data-i18n="nav_festivals">పండుగల జాబితా</div>
-      </a>
     </div>
 
   </main>
 
   <!-- Universal Footer -->
-  <footer class="border-t border-white/10 backdrop-blur-md bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-    <p data-i18n="footer_text">శ్రీ తెలుగు పంచాంగం • ఖగోళ శాస్త్ర సాంప్రదాయ గణన వ్యవస్థ</p>
+  <footer class="border-t border-white/[0.08] backdrop-blur-md bg-black/90 py-5 text-center text-xs text-zinc-400">
+    <p data-i18n="footer_text">VedicAstro • High-Precision Astronomical Vedic Almanac & Ephemeris Engine</p>
   </footer>
 
   <script src="/cosmic.js"></script>
@@ -337,7 +320,7 @@
           item.href = `/panchangam?date=${f.dateString}`;
           item.className = 'p-3 bg-slate-950/60 border border-rose-500/30 rounded-xl hover:border-rose-400 transition flex items-center justify-between group';
           const fName = isTe ? f.name : (f.english || f.name);
-          const fType = isTe ? (f.type || 'విశేష పర్వదినం') : (f.significance || 'Sacred Celebration');
+          const fType = isTe ? (f.type || 'విశేష పర్వదినం') : (f.typeEn || f.significanceEn || 'Sacred Observance');
           item.innerHTML = `
             <div>
               <div class="text-xs font-bold text-rose-300 group-hover:text-rose-200">${fName}</div>

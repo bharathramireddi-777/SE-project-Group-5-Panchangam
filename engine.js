@@ -77,22 +77,22 @@ function findBoundaryTime(startDate, targetAngleDeg, angleFunc, searchHours = 36
  * Major Telugu Festivals Database
  */
 const TELUGU_FESTIVALS = [
-  { id: "bhogi", name: "భోగి (Bhogi)", english: "Bhogi", month: 1, day: 13, monthName: "పుష్య", type: "సంక్రాంతి ప్రారంభం", significance: "పాత వస్తువులను అగ్నిలో వేసి సరికొత్త జీవితానికి స్వాగతం పలికే పండుగ." },
-  { id: "sankranti", name: "మకర సంక్రాంతి (Makara Sankranti)", english: "Makara Sankranti", month: 1, day: 14, monthName: "పుష్య", type: "ఉత్తరాయణ పుణ్యకాలం", significance: "సూర్యుడు మకర రాశిలోకి ప్రవేశించే మహత్తర ఖగోళ సంక్రమణం." },
-  { id: "kanuma", name: "కనుమ (Kanuma)", english: "Kanuma", month: 1, day: 15, monthName: "పుష్య", type: "పశువుల పండుగ", significance: "వ్యవసాయంలో తోడ్పడే గోవులు, ఎడ్లను పూజించే సాంప్రదాయం." },
-  { id: "shivaratri", name: "మహా శివరాత్రి (Maha Shivaratri)", english: "Maha Shivaratri", month: 2, day: 26, monthName: "మాఘ", type: "శివారాధన / జాగరణ", significance: "పరమశివుని లింగోద్భవ సమయం, మోక్షదాయక రాత్రి." },
-  { id: "holi", name: "హోలీ (Holi / Kamadahana)", english: "Holi", month: 3, day: 24, monthName: "ఫాల్గుణ", type: "వసంతోత్సవం / రంగులు", significance: "కామదహనం మరియు ప్రకృతి వసంత శోభకు ప్రతీక." },
-  { id: "ugadi", name: "ఉగాది (Telugu New Year - Ugadi)", english: "Ugadi", month: 3, day: 29, monthName: "చైత్ర", type: "తెలుగు సంవత్సరాది", significance: "చైత్ర శుద్ధ పాడ్యమి నాటి నూతన తెలుగు సంవత్సర ఆరంభం, షడ్రుచుల ఉగాది పచ్చడి." },
-  { id: "sri_rama_navami", name: "శ్రీరామ నవమి (Sri Rama Navami)", english: "Sri Rama Navami", month: 4, day: 6, monthName: "చైత్ర", type: "సీతారామ కళ్యాణం", significance: "మర్యాదా పురుషోత్తముడు శ్రీరామచంద్రుని జన్మదినం మరియు కళ్యాణ మహోత్సవం." },
-  { id: "hanuman_jayanti", name: "హనుమాన్ జయంతి (Hanuman Jayanti)", english: "Hanuman Jayanti", month: 5, day: 11, monthName: "వైశాఖ", type: "హనుమద్ వ్రతం", significance: "వైశాఖ బహుళ దశమి నాడు జరుపుకునే హనుమద్ వ్రతం." },
-  { id: "tholi_ekadashi", name: "తొలి ఏకాదశి (Tholi Ekadashi)", english: "Tholi Ekadashi", month: 7, day: 16, monthName: "ఆషాఢ", type: "శయన ఏకాదశి", significance: "శ్రీ మహావిష్ణువు క్షీరసాగరంలో శయనించే పవిత్ర ఏకాదశి, చాతుర్మాస్య వ్రత ప్రారంభం." },
-  { id: "varalakshmi", name: "వరలక్ష్మీ వ్రతం (Varalakshmi Vratam)", english: "Varalakshmi Vratam", month: 8, day: 21, monthName: "శ్రావణ", type: "సౌభాగ్య వ్రతం", significance: "శ్రావణ శుక్రవారం నాడు సకల సౌభాగ్యాల కోసం లక్ష్మీదేవికి చేసే పూజ." },
-  { id: "janmashtami", name: "శ్రీ కృష్ణాష్టమి (Janmashtami)", english: "Sri Krishna Janmashtami", month: 8, day: 25, monthName: "శ్రావణ", type: "గోకులాష్టమి", significance: "శ్రావణ బహుళ అష్టమి రోహిణీ నక్షత్రంలో శ్రీకృష్ణుని ఆవిర్భావం." },
-  { id: "vinayaka_chavithi", name: "వినాయక చవితి (Vinayaka Chavithi)", english: "Vinayaka Chavithi", month: 9, day: 14, monthName: "భాద్రపద", type: "గణపతి నవరాత్రులు", significance: "విఘ్ననాశకుడు శ్రీ గణేశుని జన్మోత్సవం, మట్టి వినాయక పూజ." },
-  { id: "dasara", name: "విజయదశమి / దసరా (Dasara)", english: "Vijayadashami (Dasara)", month: 10, day: 20, monthName: "ఆశ్వయుజ", type: "శరన్నవరాత్రులు", significance: "మహిషాసుర మర్దినిగా అమ్మవారి విజయం, ఆయుధ పూజ, శమీ పూజ." },
-  { id: "diwali", name: "దీపావళి (Deepavali / Diwali)", english: "Diwali", month: 11, day: 8, monthName: "ఆశ్వయుజ/కార్తీక", type: "దీపాల పండుగ", significance: "నరకాసుర వధ అనంతరం లక్ష్మీ కుబేర పూజ, చీకటిపై వెలుగుల విజయం." },
-  { id: "karthika_pournami", name: "కార్తీక పౌర్ణమి (Karthika Pournami)", english: "Karthika Pournami", month: 11, day: 23, monthName: "కార్తీక", type: "దీపోత్సవం / జ్వాలాతోరణం", significance: "శివాలయాలలో దీపారాధన, కార్తీక సోమవారాలు, సత్యనారాయణ వ్రతం." },
-  { id: "vaikuntha_ekadashi", name: "వైకుంఠ ఏకాదశి (Vaikuntha Ekadashi)", english: "Vaikuntha Ekadashi", month: 12, day: 20, monthName: "మార్గశిర", type: "ముక్కోటి ఏకాదశి", significance: "వైకుంఠ ద్వారాలు తెరుచుకునే పవిత్ర దినం, విష్ణు దర్శన పుణ్యఫలం." }
+  { id: "bhogi", name: "భోగి (Bhogi)", english: "Bhogi", month: 1, day: 13, monthName: "పుష్య", monthNameEn: "Pushya", type: "సంక్రాంతి ప్రారంభం", typeEn: "Harvest Festival Eve", significance: "పాత వస్తువులను అగ్నిలో వేసి సరికొత్త జీవితానికి స్వాగతం పలికే పండుగ.", significanceEn: "The sacred bonfire festival discarding the old and welcoming new beginnings." },
+  { id: "sankranti", name: "మకర సంక్రాంతి (Makara Sankranti)", english: "Makara Sankranti", month: 1, day: 14, monthName: "పుష్య", monthNameEn: "Pushya", type: "ఉత్తరాయణ పుణ్యకాలం", typeEn: "Solar Transit & Harvest", significance: "సూర్యుడు మకర రాశిలోకి ప్రవేశించే మహత్తర ఖగోళ సంక్రమణం.", significanceEn: "Major solar festival marking the Sun's auspicious entry into Capricorn (Makara)." },
+  { id: "kanuma", name: "కనుమ (Kanuma)", english: "Kanuma", month: 1, day: 15, monthName: "పుష్య", monthNameEn: "Pushya", type: "పశువుల పండుగ", typeEn: "Cattle & Farmer's Day", significance: "వ్యవసాయంలో తోడ్పడే గోవులు, ఎడ్లను పూజించే సాంప్రదాయం.", significanceEn: "Day dedicated to honoring cows and bulls for their vital contribution to farming." },
+  { id: "shivaratri", name: "మహా శివరాత్రి (Maha Shivaratri)", english: "Maha Shivaratri", month: 2, day: 26, monthName: "మాఘ", monthNameEn: "Magha", type: "శివారాధన / జాగరణ", typeEn: "Night of Lord Shiva", significance: "పరమశివుని లింగోద్భవ సమయం, మోక్షదాయక రాత్రి.", significanceEn: "The great night of Lord Shiva observed with fasting, meditation and all-night vigil." },
+  { id: "holi", name: "హోలీ (Holi / Kamadahana)", english: "Holi", month: 3, day: 24, monthName: "ఫాల్గుణ", monthNameEn: "Phalguna", type: "వసంతోత్సవం / రంగులు", typeEn: "Festival of Spring & Colors", significance: "కామదహనం మరియు ప్రకృతి వసంత శోభకు ప్రతీక.", significanceEn: "Celebration of the victory of devotion, burning of negativity and arrival of spring." },
+  { id: "ugadi", name: "ఉగాది (Telugu New Year - Ugadi)", english: "Ugadi", month: 3, day: 29, monthName: "చైత్ర", monthNameEn: "Chaitra", type: "తెలుగు సంవత్సరాది", typeEn: "Telugu Vedic New Year", significance: "చైత్ర శుద్ధ పాడ్యమి నాటి నూతన తెలుగు సంవత్సర ఆరంభం, షడ్రుచుల ఉగాది పచ్చడి.", significanceEn: "Auspicious beginning of the Telugu lunar new year, marked by tasting the Six-Flavor Pachadi." },
+  { id: "sri_rama_navami", name: "శ్రీరామ నవమి (Sri Rama Navami)", english: "Sri Rama Navami", month: 4, day: 6, monthName: "చైత్ర", monthNameEn: "Chaitra", type: "సీతారామ కళ్యాణం", typeEn: "Divine Appearance Day of Sri Rama", significance: "మర్యాదా పురుషోత్తముడు శ్రీరామచంద్రుని జన్మదినం మరియు కళ్యాణ మహోత్సవం.", significanceEn: "Appearance day and celestial wedding festival of Lord Sri Rama." },
+  { id: "hanuman_jayanti", name: "హనుమాన్ జయంతి (Hanuman Jayanti)", english: "Hanuman Jayanti", month: 5, day: 11, monthName: "వైశాఖ", monthNameEn: "Vaishakha", type: "హనుమద్ వ్రతం", typeEn: "Hanuman Appearance Observance", significance: "వైశాఖ బహుళ దశమి నాడు జరుపుకునే హనుమద్ వ్రతం.", significanceEn: "Celebrated on Vaishakha Krishna Dashami with special Hanuman worship and recitation." },
+  { id: "tholi_ekadashi", name: "తొలి ఏకాదశి (Tholi Ekadashi)", english: "Tholi Ekadashi", month: 7, day: 16, monthName: "ఆషాఢ", monthNameEn: "Ashadha", type: "శయన ఏకాదశి", typeEn: "First Ekadashi / Chaturmasya", significance: "శ్రీ మహావిష్ణువు క్షీరసాగరంలో శయనించే పవిత్ర ఏకాదశి, చాతుర్మాస్య వ్రత ప్రారంభం.", significanceEn: "Marks the beginning of Chaturmasya when Lord Vishnu enters cosmic yogic slumber." },
+  { id: "varalakshmi", name: "వరలక్ష్మీ వ్రతం (Varalakshmi Vratam)", english: "Varalakshmi Vratam", month: 8, day: 21, monthName: "శ్రావణ", monthNameEn: "Shravana", type: "సౌభాగ్య వ్రతం", typeEn: "Goddess Lakshmi Worship", significance: "శ్రావణ శుక్రవారం నాడు సకల సౌభాగ్యాల కోసం లక్ష్మీదేవికి చేసే పూజ.", significanceEn: "Sacred Friday observance in Shravana seeking the boons of Goddess Lakshmi." },
+  { id: "janmashtami", name: "శ్రీ కృష్ణాష్టమి (Janmashtami)", english: "Sri Krishna Janmashtami", month: 8, day: 25, monthName: "శ్రావణ", monthNameEn: "Shravana", type: "గోకులాష్టమి", typeEn: "Birth of Lord Sri Krishna", significance: "శ్రావణ బహుళ అష్టమి రోహిణీ నక్షత్రంలో శ్రీకృష్ణుని ఆవిర్భావం.", significanceEn: "Appearance day of Lord Sri Krishna born under the asterism of Rohini." },
+  { id: "vinayaka_chavithi", name: "వినాయక చవితి (Vinayaka Chavithi)", english: "Vinayaka Chavithi", month: 9, day: 14, monthName: "భాద్రపద", monthNameEn: "Bhadrapada", type: "గణపతి నవరాత్రులు", typeEn: "Lord Ganesha Festival", significance: "విఘ్ననాశకుడు శ్రీ గణేశుని జన్మోత్సవం, మట్టి వినాయక పూజ.", significanceEn: "Grand celebration worshiping the remover of all obstacles, Lord Ganesha." },
+  { id: "dasara", name: "విజయదశమి / దసరా (Dasara)", english: "Vijayadashami (Dasara)", month: 10, day: 20, monthName: "ఆశ్వయుజ", monthNameEn: "Ashwayuja", type: "శరన్నవరాత్రులు", typeEn: "Triumph of Goddess Durga", significance: "మహిషాసుర మర్దినిగా అమ్మవారి విజయం, ఆయుధ పూజ, శమీ పూజ.", significanceEn: "Celebration of divine triumph over evil, Ayudha Puja and Shami Puja." },
+  { id: "diwali", name: "దీపావళి (Deepavali / Diwali)", english: "Diwali", month: 11, day: 8, monthName: "ఆశ్వయుజ/కార్తీక", monthNameEn: "Karthika", type: "దీపాల పండుగ", typeEn: "Festival of Lights", significance: "నరకాసుర వధ అనంతరం లక్ష్మీ కుబేర పూజ, చీకటిపై వెలుగుల విజయం.", significanceEn: "Festival of lights symbolizing the victory of illumination over darkness and Lakshmi worship." },
+  { id: "karthika_pournami", name: "కార్తీక పౌర్ణమి (Karthika Pournami)", english: "Karthika Pournami", month: 11, day: 23, monthName: "కార్తీక", monthNameEn: "Karthika", type: "దీపోత్సవం / జ్వాలాతోరణం", typeEn: "Karthika Full Moon", significance: "శివాలయాలలో దీపారాధన, కార్తీక సోమవారాలు, సత్యనారాయణ వ్రతం.", significanceEn: "Sacred full moon celebrated with holy lamp illuminations in temples across Andhra & Telangana." },
+  { id: "vaikuntha_ekadashi", name: "వైకుంఠ ఏకాదశి (Vaikuntha Ekadashi)", english: "Vaikuntha Ekadashi", month: 12, day: 20, monthName: "మార్గశిర", monthNameEn: "Margashira", type: "ముక్కోటి ఏకాదశి", typeEn: "Vaikuntha Door Opening Day", significance: "వైకుంఠ ద్వారాలు తెరుచుకునే పవిత్ర దినం, విష్ణు దర్శన పుణ్యఫలం.", significanceEn: "The celestial gates of Vaikuntha open; millions seek divine blessings of Lord Vishnu." }
 ];
 
 /**
@@ -100,13 +100,13 @@ const TELUGU_FESTIVALS = [
  * 7 Types: Amrit (Good), Shubh (Good), Labh (Good), Char (Good), Rog (Bad), Kaal (Bad), Udveg (Bad)
  */
 const CHOGHADIYA_TYPES = {
-  Amrit: { nameTe: "అమృత్", status: "good", desc: "అమృత ఘడియలు - అత్యంత శుభప్రదం" },
-  Shubh: { nameTe: "శుభ్", status: "good", desc: "సకల శుభకార్యాలకు శ్రేష్ఠమైనది" },
-  Labh: { nameTe: "లాభ్", status: "good", desc: "ధనలాభం, వ్యాపార ప్రారంభాలకు అనుకూలం" },
-  Char: { nameTe: "చల్ (చర)", status: "good", desc: "ప్రయాణాలు, వాహన కొనుగోలుకు అనుకూలం" },
-  Rog: { nameTe: "రోగ్", status: "bad", desc: "అనారోగ్య భయం, వివాదాలకు కారణం (వర్జ్యం)" },
-  Kaal: { nameTe: "కాల్", status: "bad", desc: "కాల భయం, నష్టదాయక సమయం (వర్జ్యం)" },
-  Udveg: { nameTe: "ఉద్వేగ్", status: "bad", desc: "మానసిక ఆందోళన, శ్రమ (వర్జ్యం)" }
+  Amrit: { nameTe: "అమృత్", status: "good", desc: "అమృత ఘడియలు - అత్యంత శుభప్రదం", descEn: "Nectar time - Highly auspicious for all undertakings" },
+  Shubh: { nameTe: "శుభ్", status: "good", desc: "సకల శుభకార్యాలకు శ్రేష్ఠమైనది", descEn: "Auspicious window - Ideal for sacred & constructive tasks" },
+  Labh: { nameTe: "లాభ్", status: "good", desc: "ధనలాభం, వ్యాపార ప్రారంభాలకు అనుకూలం", descEn: "Gainful period - Best for commerce, trade & financial starts" },
+  Char: { nameTe: "చల్ (చర)", status: "good", desc: "ప్రయాణాలు, వాహన కొనుగోలుకు అనుకూలం", descEn: "Movable slot - Suitable for travels and vehicle purchases" },
+  Rog: { nameTe: "రోగ్", status: "bad", desc: "అనారోగ్య భయం, వివాదాలకు కారణం (వర్జ్యం)", descEn: "Affliction slot - Avoid conflicts, surgery or new ventures" },
+  Kaal: { nameTe: "కాల్", status: "bad", desc: "కాల భయం, నష్టదాయక సమయం (వర్జ్యం)", descEn: "Loss & obstacle window - Strictly inauspicious (Avoid)" },
+  Udveg: { nameTe: "ఉద్వేగ్", status: "bad", desc: "మానసిక ఆందోళన, శ్రమ (వర్జ్యం)", descEn: "Agitation & anxiety window - Unfavorable period (Avoid)" }
 };
 
 // Day order starting from 1st slot for each weekday (Sun = 0, Mon = 1, etc.)
@@ -359,6 +359,7 @@ function calculatePanchangam(date = new Date(), lat = 17.3850, lng = 78.4867, el
       nameTe: meta.nameTe,
       status: meta.status,
       desc: meta.desc,
+      descEn: meta.descEn,
       gauriTe: gauriNames[i],
       start: formatTime(slotStart, timeZone),
       end: formatTime(slotEnd, timeZone)
@@ -375,6 +376,7 @@ function calculatePanchangam(date = new Date(), lat = 17.3850, lng = 78.4867, el
       nameTe: meta.nameTe,
       status: meta.status,
       desc: meta.desc,
+      descEn: meta.descEn,
       start: formatTime(slotStart, timeZone),
       end: formatTime(slotEnd, timeZone)
     };
@@ -444,6 +446,7 @@ function calculatePanchangam(date = new Date(), lat = 17.3850, lng = 78.4867, el
         endsAt: formatTime(yogaEndTime, timeZone)
       },
       karanam: {
+        ...currentKarana,
         current: currentKarana,
         upcoming: upcomingKarana
       }

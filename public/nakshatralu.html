@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>శ్రీ తెలుగు పంచాంగం • 27 నక్షత్రాలు (27 Nakshatras)</title>
+  <title>VedicAstro • 27 Nakshatras (నక్షత్రాలు)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/cosmic.css">
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col overflow-x-hidden max-w-full w-full">
 
   <!-- Header Container -->
   <div id="header-container"></div>
@@ -18,18 +18,18 @@
     <!-- PAGE HERO TITLE -->
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-white/10 pb-4">
       <div>
-        <div class="text-xs font-mono text-amber-400 uppercase tracking-widest">27 LUNAR CONSTELLATIONS</div>
-        <h2 class="text-3xl font-extrabold gold-nebula-text font-display">
+        <div class="text-xs font-mono text-amber-400 uppercase tracking-widest" data-i18n="nak_page_tag">27 LUNAR CONSTELLATIONS</div>
+        <h2 class="text-3xl font-extrabold gold-nebula-text font-display" data-i18n="nak_page_title">
           సప్తవింశతి నక్షత్రాలు (The 27 Nakshatras)
         </h2>
-        <p id="page-subtitle" class="text-xs text-slate-400 mt-1">
+        <p id="page-subtitle" class="text-xs text-slate-400 mt-1" data-i18n="nak_page_desc">
           అశ్విని నుండి రేవతి వరకు అధిదేవతలు, వింశోత్తరి గ్రహాధిపతులు, నామాక్షరాలు మరియు పాదాలు.
         </p>
       </div>
 
       <!-- Quick Switch to Raashis -->
       <a href="/raashulu" class="px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-violet-500/20 to-cyan-500/20 border border-violet-500/30 text-violet-300 hover:border-violet-400 transition flex items-center gap-2">
-        <span>♈ 12 రాశుల విభాగం</span>
+        <span>♈</span> <span data-i18n="nav_raashulu">రాశులు</span>
         <span>➔</span>
       </a>
     </div>
@@ -38,26 +38,26 @@
     <div id="spotlight-nakshatra" class="astra-card rounded-2xl p-6 border-l-4 border-l-amber-400 relative overflow-hidden bg-gradient-to-r from-amber-950/40 via-slate-900/60 to-violet-950/40">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <span class="px-2.5 py-0.5 rounded-full bg-amber-950 border border-amber-500/40 text-amber-300 text-[10px] font-bold font-mono uppercase tracking-wider">
+          <span class="px-2.5 py-0.5 rounded-full bg-amber-950 border border-amber-500/40 text-amber-300 text-[10px] font-bold font-mono uppercase tracking-wider" data-i18n="nak_active_label">
             ● నేటి సంచార నక్షత్రం (ACTIVE CONSTELLATION RIGHT NOW)
           </span>
           <div class="flex items-center gap-3 mt-2">
             <span class="text-4xl text-amber-400">✨</span>
             <div>
               <div class="flex items-baseline gap-2">
-                <h3 id="active-star-name" class="text-2xl font-bold text-slate-100">ఆరుద్ర నక్షత్రం (Arudra)</h3>
-                <span id="active-star-pada" class="px-2 py-0.5 rounded-full bg-rose-950 text-rose-300 border border-rose-500/30 text-[10px] font-bold font-mono">పాదం 4</span>
+                <h3 id="active-star-name" class="text-2xl font-bold text-slate-100">--</h3>
+                <span id="active-star-pada" class="px-2 py-0.5 rounded-full bg-rose-950 text-rose-300 border border-rose-500/30 text-[10px] font-bold font-mono">--</span>
               </div>
               <p id="active-star-sub" class="text-xs text-slate-300 mt-1">
-                ముగింపు సమయం: <strong id="active-star-end" class="text-amber-300 font-mono">01:29 AM</strong> | అధిపతి: <strong id="active-star-ruler" class="text-slate-100">రాహువు (Rahu)</strong>
+                --
               </p>
             </div>
           </div>
         </div>
 
         <div class="text-right">
-          <div class="text-[11px] text-slate-400">అధిదేవత (Presiding Deity)</div>
-          <div id="active-star-deity" class="text-base font-bold text-violet-300 mt-0.5">రుద్రుడు (Rudra)</div>
+          <div class="text-[11px] text-slate-400" data-i18n="nak_modal_deity">అధిదేవత (DEITY)</div>
+          <div id="active-star-deity" class="text-base font-bold text-violet-300 mt-0.5">--</div>
         </div>
       </div>
     </div>
@@ -67,16 +67,16 @@
       <!-- Gana Filter Buttons -->
       <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs">
         <span class="text-slate-400 mr-1 font-mono">GANA:</span>
-        <button onclick="filterNakshatras('all')" id="flt-n-all" class="nakshatra-filter-btn px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-400/40 text-amber-300 font-semibold">
+        <button onclick="filterNakshatras('all')" id="flt-n-all" class="nakshatra-filter-btn px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-400/40 text-amber-300 font-semibold" data-i18n="nak_filter_all">
           అన్నీ (All 27)
         </button>
-        <button onclick="filterNakshatras('దేవ')" id="flt-n-deva" class="nakshatra-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white">
+        <button onclick="filterNakshatras('దేవ')" id="flt-n-deva" class="nakshatra-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white" data-i18n="nak_filter_deva">
           🕊️ దేవ గణము (Deva)
         </button>
-        <button onclick="filterNakshatras('మనుష్య')" id="flt-n-manushya" class="nakshatra-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white">
+        <button onclick="filterNakshatras('మనుష్య')" id="flt-n-manushya" class="nakshatra-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white" data-i18n="nak_filter_manushya">
           👤 మనుష్య గణము (Manushya)
         </button>
-        <button onclick="filterNakshatras('రాక్షస')" id="flt-n-rakshasa" class="nakshatra-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white">
+        <button onclick="filterNakshatras('రాక్షస')" id="flt-n-rakshasa" class="nakshatra-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white" data-i18n="nak_filter_rakshasa">
           ⚡ రాక్షస గణము (Rakshasa)
         </button>
       </div>
@@ -121,32 +121,32 @@
 
       <div class="grid grid-cols-2 gap-3 text-xs">
         <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5">
-          <div class="text-[10px] text-slate-400 font-mono">అధిదేవత (DEITY)</div>
+          <div class="text-[10px] text-slate-400 font-mono" data-i18n="nak_modal_deity">అధిదేవత (DEITY)</div>
           <div id="nm-deity" class="font-bold text-violet-300 mt-0.5">అశ్విని కుమారులు</div>
         </div>
         <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5">
-          <div class="text-[10px] text-slate-400 font-mono">యోని జంతువు (YONI)</div>
+          <div class="text-[10px] text-slate-400 font-mono" data-i18n="nak_modal_yoni">యోని జంతువు (YONI)</div>
           <div id="nm-yoni" class="font-bold text-amber-300 mt-0.5">గుర్రం (Horse)</div>
         </div>
         <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5">
-          <div class="text-[10px] text-slate-400 font-mono">తత్వం (ELEMENT)</div>
+          <div class="text-[10px] text-slate-400 font-mono" data-i18n="nak_modal_element">తత్వం (ELEMENT)</div>
           <div id="nm-element" class="font-bold text-cyan-300 mt-0.5">భూమి (Earth)</div>
         </div>
         <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5">
-          <div class="text-[10px] text-slate-400 font-mono">వర్జ్య ఘడియలు (TYAJYA)</div>
+          <div class="text-[10px] text-slate-400 font-mono" data-i18n="nak_modal_tyajya">వర్జ్య ఘడియలు (TYAJYA)</div>
           <div id="nm-varjyam" class="font-bold text-rose-300 mt-0.5">50వ ఘడియ</div>
         </div>
       </div>
 
       <div class="p-3 bg-amber-950/30 border border-amber-500/20 rounded-xl text-xs">
-        <div class="text-[10px] text-amber-400 font-mono">నామాక్షరాలు (INITIAL NAMING SYLLABLES)</div>
+        <div class="text-[10px] text-amber-400 font-mono" data-i18n="nak_modal_syllables">నామాక్షరాలు (INITIAL NAMING SYLLABLES)</div>
         <div id="nm-syllables" class="text-amber-200 mt-0.5 font-semibold text-sm">చూ, చే, చో, లా</div>
       </div>
     </div>
   </div>
 
-  <footer class="border-t border-white/10 backdrop-blur-md bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-    <p>శ్రీ తెలుగు పంచాంగం • సప్తవింశతి నక్షత్ర మండలం</p>
+  <footer class="border-t border-white/[0.08] backdrop-blur-md bg-black/90 py-5 text-center text-xs text-zinc-400">
+    <p data-i18n="footer_text">VedicAstro • High-Precision Astronomical Vedic Almanac & Ephemeris Engine</p>
   </footer>
 
   <script src="/cosmic.js"></script>
@@ -157,6 +157,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       initStarfield();
       renderCosmicHeader('nakshatralu');
+      applyI18nTranslations();
       loadNakshatras();
     });
 
@@ -169,11 +170,17 @@
 
       // Spotlight banner
       const cur = data.panchaAngas.nakshatram;
-      document.getElementById('active-star-name').textContent = isTe ? `${cur.telugu} నక్షత్రం (${cur.english})` : `${cur.english} Nakshatra`;
-      document.getElementById('active-star-pada').textContent = isTe ? `పాదం ${cur.pada}` : `Pada ${cur.pada}`;
-      document.getElementById('active-star-end').textContent = cur.endsAt;
-      document.getElementById('active-star-ruler').textContent = cur.ruler;
-      document.getElementById('active-star-deity').textContent = cur.deity || 'అగ్ని / చంద్ర';
+      const elName = document.getElementById('active-star-name');
+      const elPada = document.getElementById('active-star-pada');
+      const elSub = document.getElementById('active-star-sub');
+      const elDeity = document.getElementById('active-star-deity');
+
+      if (elName) elName.textContent = isTe ? `${cur.telugu} నక్షత్రం (${cur.english})` : `${cur.english} Nakshatra`;
+      if (elPada) elPada.textContent = isTe ? `పాదం ${cur.pada}` : `Pada ${cur.pada}`;
+      if (elSub) elSub.textContent = isTe 
+        ? `ముగింపు సమయం: ${cur.endsAt} | అధిపతి: ${getLocalizedBilingual(cur.ruler, isTe)}` 
+        : `Ends at: ${cur.endsAt} | Ruler: ${getLocalizedBilingual(cur.ruler, isTe)}`;
+      if (elDeity) elDeity.textContent = getLocalizedBilingual(cur.deity, isTe);
 
       renderNakshatraCards(allNakshatrasData);
     }
@@ -186,6 +193,7 @@
       list.forEach(n => {
         const card = document.createElement('div');
         const isActive = n.isCurrentNakshatra;
+        const ganaLabel = isTe ? n.gana.split(' ')[0] : (n.gana.includes('దేవ') ? 'Deva' : (n.gana.includes('మనుష్య') ? 'Manushya' : 'Rakshasa'));
 
         card.className = `astra-card rounded-2xl p-5 flex flex-col justify-between cursor-pointer transition relative overflow-hidden group ${isActive ? 'ring-2 ring-amber-400 bg-amber-950/30' : ''}`;
         card.onclick = () => openNakshatraModal(n);
@@ -197,8 +205,8 @@
                 #${String(n.id).padStart(2, '0')}
               </span>
               <div class="flex items-center gap-1">
-                ${isActive ? '<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400 text-[10px] font-bold font-mono animate-pulse">● ACTIVE TODAY</span>' : ''}
-                <span class="px-2 py-0.5 rounded-full bg-slate-900 text-slate-300 border border-white/10 text-[10px]">${n.gana.split(' ')[0]}</span>
+                ${isActive ? `<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400 text-[10px] font-bold font-mono animate-pulse">● ${isTe ? 'నేటి నక్షత్రం' : 'ACTIVE TODAY'}</span>` : ''}
+                <span class="px-2 py-0.5 rounded-full bg-slate-900 text-slate-300 border border-white/10 text-[10px]">${ganaLabel}</span>
               </div>
             </div>
 
@@ -209,20 +217,20 @@
 
             <div class="mt-3 p-2 bg-slate-950/50 rounded-xl border border-white/5 space-y-1 text-xs">
               <div class="text-slate-300 flex justify-between">
-                <span class="text-slate-400">అధిపతి:</span> <strong class="text-cyan-300">${n.ruler}</strong>
+                <span class="text-slate-400">${isTe ? 'అధిపతి:' : 'Ruler:'}</span> <strong class="text-cyan-300">${getLocalizedBilingual(n.ruler, isTe)}</strong>
               </div>
               <div class="text-slate-300 flex justify-between">
-                <span class="text-slate-400">అధిదేవత:</span> <strong class="text-violet-300">${n.deity.split(' ')[0]}</strong>
+                <span class="text-slate-400">${isTe ? 'అధిదేవత:' : 'Deity:'}</span> <strong class="text-violet-300">${getLocalizedBilingual(n.deity, isTe)}</strong>
               </div>
             </div>
 
             <p class="text-xs text-slate-300 mt-2 line-clamp-2 leading-relaxed">
-              ${n.description}
+              ${isTe ? n.description : (n.descriptionEn || n.description)}
             </p>
           </div>
 
           <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
-            <span class="truncate max-w-[170px] text-amber-200/80">నామాక్షరాలు: ${n.syllables.split('(')[0]}</span>
+            <span class="truncate max-w-[170px] text-amber-200/80">${isTe ? 'నామాక్షరాలు:' : 'Syllables:'} ${isTe ? n.syllables.split('(')[0].trim() : getLocalizedBilingual(n.syllables, false)}</span>
             <span class="text-amber-400 group-hover:translate-x-1 transition font-mono">INFO ➔</span>
           </div>
         `;
@@ -272,14 +280,16 @@
       const isTe = getStoredLang() === 'te';
       document.getElementById('nm-id').textContent = String(n.id).padStart(2, '0');
       document.getElementById('nm-title').textContent = `${isTe ? n.telugu : n.english} (${isTe ? n.english : n.telugu})`;
-      document.getElementById('nm-gana-badge').textContent = n.gana;
-      document.getElementById('nm-ruler').textContent = `వింశోత్తరి గ్రహాధిపతి: ${n.ruler}`;
-      document.getElementById('nm-desc').textContent = n.description;
-      document.getElementById('nm-deity').textContent = n.deity;
-      document.getElementById('nm-yoni').textContent = n.yoni;
-      document.getElementById('nm-element').textContent = n.element;
-      document.getElementById('nm-varjyam').textContent = `${n.varjyamStartGhatika}వ ఘడియ ప్రారంభం`;
-      document.getElementById('nm-syllables').textContent = n.syllables;
+      
+      const ganaFull = isTe ? n.gana : (n.gana.includes('దేవ') ? 'Deva Gana' : (n.gana.includes('మనుష్య') ? 'Manushya Gana' : 'Rakshasa Gana'));
+      document.getElementById('nm-gana-badge').textContent = ganaFull;
+      document.getElementById('nm-ruler').textContent = isTe ? `వింశోత్తరి గ్రహాధిపతి: ${getLocalizedBilingual(n.ruler, isTe)}` : `Vimshottari Dasha Lord: ${getLocalizedBilingual(n.ruler, isTe)}`;
+      document.getElementById('nm-desc').textContent = isTe ? n.description : (n.descriptionEn || n.description);
+      document.getElementById('nm-deity').textContent = getLocalizedBilingual(n.deity, isTe);
+      document.getElementById('nm-yoni').textContent = getLocalizedBilingual(n.yoni, isTe);
+      document.getElementById('nm-element').textContent = getLocalizedBilingual(n.element, isTe);
+      document.getElementById('nm-varjyam').textContent = isTe ? `${n.varjyamStartGhatika}వ ఘడియ ప్రారంభం` : `Commences at Ghatika ${n.varjyamStartGhatika}`;
+      document.getElementById('nm-syllables').textContent = isTe ? n.syllables : (n.syllables.includes('(') ? `${n.syllables.match(/\((.*?)\)/)[1]} (${n.syllables.split('(')[0].trim()})` : n.syllables);
 
       const modal = document.getElementById('nakshatra-modal');
       modal.classList.remove('hidden');

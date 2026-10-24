@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>శ్రీ తెలుగు పంచాంగం • ద్వాదశ రాశులు (12 Raashis)</title>
+  <title>VedicAstro • 12 Raashis (ద్వాదశ రాశులు)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/cosmic.css">
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col overflow-x-hidden max-w-full w-full">
 
   <!-- Header Container -->
   <div id="header-container"></div>
@@ -18,18 +18,18 @@
     <!-- PAGE HERO TITLE -->
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-white/10 pb-4">
       <div>
-        <div class="text-xs font-mono text-violet-400 uppercase tracking-widest">12 ZODIAC CONSTELLATIONS</div>
-        <h2 class="text-3xl font-extrabold violet-nebula-text font-display">
+        <div class="text-xs font-mono text-violet-400 uppercase tracking-widest" data-i18n="raa_page_tag">12 ZODIAC CONSTELLATIONS</div>
+        <h2 class="text-3xl font-extrabold violet-nebula-text font-display" data-i18n="raa_page_title">
           ద్వాదశ రాశులు (The Twelve Raashis)
         </h2>
-        <p id="page-subtitle" class="text-xs text-slate-400 mt-1">
+        <p id="page-subtitle" class="text-xs text-slate-400 mt-1" data-i18n="raa_page_desc">
           రాశి చక్రంలోని 12 రాశుల తత్వాలు, అధిపతులు, జన్మ రత్నాలు మరియు నేటి ఖగోళ స్థితి.
         </p>
       </div>
 
       <!-- Quick Switch to Nakshatras -->
       <a href="/nakshatralu" class="px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-amber-500/20 to-violet-500/20 border border-amber-500/30 text-amber-300 hover:border-amber-400 transition flex items-center gap-2">
-        <span>✨ 27 నక్షత్రాల విభాగం</span>
+        <span data-i18n="raa_goto_nakshatras">✨ 27 నక్షత్రాల విభాగం</span>
         <span>➔</span>
       </a>
     </div>
@@ -38,7 +38,7 @@
     <div id="spotlight-banner" class="astra-card rounded-2xl p-6 border-l-4 border-l-cyan-400 relative overflow-hidden bg-gradient-to-r from-cyan-950/40 via-slate-900/60 to-violet-950/40">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <span class="px-2.5 py-0.5 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-[10px] font-bold font-mono uppercase tracking-wider">
+          <span class="px-2.5 py-0.5 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-[10px] font-bold font-mono uppercase tracking-wider" data-i18n="raa_active_moon_tag">
             ● ప్రస్తుత చంద్ర సంచార రాశి (ACTIVE MOON SIGN)
           </span>
           <div class="flex items-center gap-3 mt-2">
@@ -53,7 +53,7 @@
         </div>
 
         <div class="text-right">
-          <div class="text-[11px] text-slate-400">సూర్య రాశి (Sun Sign)</div>
+          <div class="text-[11px] text-slate-400" data-i18n="raa_sun_sign_lbl">సూర్య రాశి (Sun Sign)</div>
           <div id="active-surya-rasi" class="text-base font-bold text-amber-300 mt-0.5">కన్య (Virgo)</div>
         </div>
       </div>
@@ -61,20 +61,20 @@
 
     <!-- ELEMENT FILTERS -->
     <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs">
-      <span class="text-slate-400 mr-2 font-mono">FILTER:</span>
-      <button onclick="filterRaashis('all')" id="flt-all" class="raashi-filter-btn px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-semibold">
+      <span class="text-slate-400 mr-2 font-mono" data-i18n="raa_filter_lbl">FILTER:</span>
+      <button onclick="filterRaashis('all')" id="flt-all" class="raashi-filter-btn px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-semibold" data-i18n="raa_filter_all">
         అన్నీ (All 12)
       </button>
-      <button onclick="filterRaashis('Fire')" id="flt-Fire" class="raashi-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white">
+      <button onclick="filterRaashis('Fire')" id="flt-Fire" class="raashi-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white" data-i18n="raa_filter_fire">
         🔥 అగ్ని తత్వం (Fire)
       </button>
-      <button onclick="filterRaashis('Earth')" id="flt-Earth" class="raashi-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white">
+      <button onclick="filterRaashis('Earth')" id="flt-Earth" class="raashi-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white" data-i18n="raa_filter_earth">
         🌍 భూ తత్వం (Earth)
       </button>
-      <button onclick="filterRaashis('Air')" id="flt-Air" class="raashi-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white">
+      <button onclick="filterRaashis('Air')" id="flt-Air" class="raashi-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white" data-i18n="raa_filter_air">
         💨 వాయు తత్వం (Air)
       </button>
-      <button onclick="filterRaashis('Water')" id="flt-Water" class="raashi-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white">
+      <button onclick="filterRaashis('Water')" id="flt-Water" class="raashi-filter-btn px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white" data-i18n="raa_filter_water">
         💧 జల తత్వం (Water)
       </button>
     </div>
@@ -112,32 +112,32 @@
 
       <div class="grid grid-cols-2 gap-3 text-xs">
         <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5">
-          <div class="text-[10px] text-slate-400 font-mono">జన్మ రత్నం (GEMSTONE)</div>
+          <div class="text-[10px] text-slate-400 font-mono" data-i18n="raa_gem_lbl">జన్మ రత్నం (GEMSTONE)</div>
           <div id="m-gem" class="font-bold text-amber-300 mt-0.5">పగడం (Red Coral)</div>
         </div>
         <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5">
-          <div class="text-[10px] text-slate-400 font-mono">అదృష్ట రంగు (LUCKY COLOR)</div>
+          <div class="text-[10px] text-slate-400 font-mono" data-i18n="raa_col_lbl">అదృష్ట రంగు (LUCKY COLOR)</div>
           <div id="m-color" class="font-bold text-rose-300 mt-0.5">ఎరుపు (Crimson)</div>
         </div>
         <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5">
-          <div class="text-[10px] text-slate-400 font-mono">అదృష్ట సంఖ్యలు (NUMBERS)</div>
+          <div class="text-[10px] text-slate-400 font-mono" data-i18n="raa_num_lbl">అదృష్ట సంఖ్యలు (NUMBERS)</div>
           <div id="m-numbers" class="font-bold text-cyan-300 mt-0.5">9, 1, 4</div>
         </div>
         <div class="p-3 bg-slate-900/80 rounded-xl border border-white/5">
-          <div class="text-[10px] text-slate-400 font-mono">లక్షణాలు (QUALITIES)</div>
+          <div class="text-[10px] text-slate-400 font-mono" data-i18n="raa_qua_lbl">లక్షణాలు (QUALITIES)</div>
           <div id="m-qualities" class="font-bold text-slate-200 mt-0.5">చొరవ, నాయకత్వం</div>
         </div>
       </div>
 
       <div class="p-3 bg-violet-950/30 border border-violet-500/20 rounded-xl text-xs">
-        <div class="text-[10px] text-violet-400 font-mono">నక్షత్ర పాదాలు (CONSTELLATION SPAN)</div>
+        <div class="text-[10px] text-violet-400 font-mono" data-i18n="raa_nak_lbl">నక్షత్ర పాదాలు (CONSTELLATION SPAN)</div>
         <div id="m-nakshatras" class="text-violet-200 mt-0.5">అశ్విని (4), భరణి (4), కృత్తిక (1)</div>
       </div>
     </div>
   </div>
 
-  <footer class="border-t border-white/10 backdrop-blur-md bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-    <p>శ్రీ తెలుగు పంచాంగం • ద్వాదశ రాశి చక్ర వివరాలు</p>
+  <footer class="border-t border-white/[0.08] backdrop-blur-md bg-black/90 py-5 text-center text-xs text-zinc-400">
+    <p data-i18n="footer_text">VedicAstro • High-Precision Astronomical Vedic Almanac & Ephemeris Engine</p>
   </footer>
 
   <script src="/cosmic.js"></script>
@@ -147,6 +147,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       initStarfield();
       renderCosmicHeader('raashulu');
+      applyI18nTranslations();
       loadRaashis();
     });
 
@@ -164,8 +165,8 @@
       document.getElementById('active-rasi-symbol').textContent = chandra.symbol || '♊';
       document.getElementById('active-rasi-name').textContent = isTe ? `${chandra.telugu} రాశి (${chandra.english})` : `${chandra.english} Rasi`;
       document.getElementById('active-rasi-sub').textContent = isTe 
-        ? `చంద్రుడు ప్రస్తుతం ఈ రాశిలో ${chandra.degreeInRasi}° వద్ద సంచరిస్తున్నాడు. అధిపతి: ${chandra.ruler}.`
-        : `Moon currently transiting at ${chandra.degreeInRasi}° in this sign. Lord: ${chandra.ruler}.`;
+        ? `చంద్రుడు ప్రస్తుతం ఈ రాశిలో ${chandra.degreeInRasi}° వద్ద సంచరిస్తున్నాడు. అధిపతి: ${getLocalizedBilingual(chandra.ruler, isTe)}.`
+        : `Moon currently transiting at ${chandra.degreeInRasi}° in this sign. Lord: ${getLocalizedBilingual(chandra.ruler, isTe)}.`;
 
       document.getElementById('active-surya-rasi').textContent = isTe ? `${surya.telugu} (${surya.english})` : surya.english;
 
@@ -192,7 +193,7 @@
               <div class="flex items-center gap-1">
                 ${isMoonActive ? '<span class="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400 text-[10px] font-bold font-mono animate-pulse">🌙 MOON</span>' : ''}
                 ${isSunActive ? '<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400 text-[10px] font-bold font-mono">☀️ SUN</span>' : ''}
-                <span class="px-2 py-0.5 rounded-full bg-slate-900 text-slate-300 border border-white/10 text-[10px]">${r.element}</span>
+                <span class="px-2 py-0.5 rounded-full bg-slate-900 text-slate-300 border border-white/10 text-[10px]">${getLocalizedBilingual(r.element, isTe)}</span>
               </div>
             </div>
 
@@ -202,13 +203,13 @@
             <div class="text-xs text-slate-400">${isTe ? r.english : r.telugu}</div>
 
             <p class="text-xs text-slate-300 mt-3 line-clamp-2 leading-relaxed">
-              ${r.description}
+              ${isTe ? r.description : (r.descriptionEn || r.description)}
             </p>
           </div>
 
           <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
-            <span>అధిపతి: <strong class="text-slate-200">${r.ruler}</strong></span>
-            <span class="text-cyan-400 group-hover:translate-x-1 transition font-mono">VIEW ➔</span>
+            <span>${isTe ? 'అధిపతి' : 'Ruler'}: <strong class="text-slate-200">${getLocalizedBilingual(r.ruler, isTe)}</strong></span>
+            <span class="text-cyan-400 group-hover:translate-x-1 transition font-mono">${isTe ? 'వివరాలు ➔' : 'DETAILS ➔'}</span>
           </div>
         `;
         container.appendChild(card);
@@ -238,14 +239,14 @@
       const isTe = getStoredLang() === 'te';
       document.getElementById('m-symbol').textContent = r.symbol;
       document.getElementById('m-title').textContent = `${isTe ? r.telugu : r.english} (${isTe ? r.english : r.telugu})`;
-      document.getElementById('m-element-badge').textContent = r.element;
-      document.getElementById('m-ruler').textContent = `అధిపతి గ్రహం: ${r.ruler}`;
-      document.getElementById('m-desc').textContent = r.description;
-      document.getElementById('m-gem').textContent = r.gem;
-      document.getElementById('m-color').textContent = r.luckyColor;
+      document.getElementById('m-element-badge').textContent = getLocalizedBilingual(r.element, isTe);
+      document.getElementById('m-ruler').textContent = isTe ? `అధిపతి గ్రహం: ${getLocalizedBilingual(r.ruler, isTe)}` : `Ruling Planet: ${getLocalizedBilingual(r.ruler, isTe)}`;
+      document.getElementById('m-desc').textContent = isTe ? r.description : (r.descriptionEn || r.description);
+      document.getElementById('m-gem').textContent = isTe ? r.gem : (r.gemEn || r.gem);
+      document.getElementById('m-color').textContent = isTe ? r.luckyColor : (r.luckyColorEn || r.luckyColor);
       document.getElementById('m-numbers').textContent = r.luckyNumbers.join(', ');
-      document.getElementById('m-qualities').textContent = r.qualities;
-      document.getElementById('m-nakshatras').textContent = r.nakshatraSpan;
+      document.getElementById('m-qualities').textContent = isTe ? r.qualities : (r.qualitiesEn || r.qualities);
+      document.getElementById('m-nakshatras').textContent = isTe ? r.nakshatraSpan : (r.nakshatraSpanEn || r.nakshatraSpan);
 
       const modal = document.getElementById('raashi-modal');
       modal.classList.remove('hidden');

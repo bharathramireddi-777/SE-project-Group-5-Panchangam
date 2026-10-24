@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>శ్రీ తెలుగు పంచాంగం • పండుగలు & వ్రతాలు (Festivals)</title>
+  <title>VedicAstro • Festivals & Vratams (పండుగలు & వ్రతాలు)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/cosmic.css">
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col overflow-x-hidden max-w-full w-full">
 
   <!-- Header Container -->
   <div id="header-container"></div>
@@ -18,18 +18,18 @@
     <!-- PAGE HERO TITLE -->
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-white/10 pb-4">
       <div>
-        <div class="text-xs font-mono text-rose-400 uppercase tracking-widest">SACRED CELESTIAL OBSERVANCES</div>
-        <h2 class="text-3xl font-extrabold gold-nebula-text font-display">
+        <div class="text-xs font-mono text-rose-400 uppercase tracking-widest" data-i18n="fest_page_tag">SACRED CELESTIAL OBSERVANCES</div>
+        <h2 class="text-3xl font-extrabold gold-nebula-text font-display" data-i18n="fest_page_title">
           ప్రధాన తెలుగు పండుగలు & వ్రతాలు (Festivals & Vratams)
         </h2>
-        <p class="text-xs text-slate-400 mt-1">
+        <p class="text-xs text-slate-400 mt-1" data-i18n="fest_page_desc">
           చాంద్రమాన మాసాల ప్రకారం జరుపుకునే సాంప్రదాయ తెలుగు పండుగలు మరియు వాటి ఆధ్యాత్మిక ప్రాశస్త్యం.
         </p>
       </div>
 
       <div class="flex items-center gap-2">
         <a href="/" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-white/10 text-slate-300 hover:bg-slate-800 transition">
-          🌌 హోమ్ పోర్టల్ ➔
+          🌌 <span data-i18n="nav_home">హోమ్</span> ➔
         </a>
       </div>
     </div>
@@ -37,12 +37,12 @@
     <!-- SEARCH & FILTER -->
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
       <div class="flex items-center gap-2 text-xs text-slate-300">
-        <span class="font-mono text-cyan-400">STATUS:</span>
-        <span class="px-2.5 py-0.5 rounded-full bg-slate-900 border border-white/10">16 Major Celestial Celebrations</span>
+        <span class="font-mono text-cyan-400" data-i18n="fest_status_label">STATUS:</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-slate-900 border border-white/10" data-i18n="fest_count_label">16 ప్రధాన పర్వదినాలు</span>
       </div>
 
       <div class="relative min-w-[260px]">
-        <input type="text" id="festSearch" oninput="filterFestivals(this.value)" placeholder="Search festival (e.g. ఉగాది, Dasara)..." class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
+        <input type="text" id="festSearch" oninput="filterFestivals(this.value)" placeholder="Search festival (e.g. ఉగాది, Dasara)..." data-i18n-placeholder="fest_search_ph" class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
         <span class="absolute right-3 top-2 text-xs text-slate-500">🔍</span>
       </div>
     </div>
@@ -54,8 +54,8 @@
 
   </main>
 
-  <footer class="border-t border-white/10 backdrop-blur-md bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-    <p>శ్రీ తెలుగు పంచాంగం • చాంద్రమాన పండుగల వివరాలు</p>
+  <footer class="border-t border-white/[0.08] backdrop-blur-md bg-black/90 py-5 text-center text-xs text-zinc-400">
+    <p data-i18n="footer_text">VedicAstro • High-Precision Astronomical Vedic Almanac & Ephemeris Engine</p>
   </footer>
 
   <script src="/cosmic.js"></script>
@@ -65,6 +65,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       initStarfield();
       renderCosmicHeader('festivals');
+      applyI18nTranslations();
       loadFestivals();
     });
 
@@ -85,9 +86,9 @@
         card.className = 'astra-card rounded-2xl p-5 flex flex-col justify-between hover:border-amber-400/40 transition group';
 
         const fName = isTe ? f.name : (f.english || f.name);
-        const fMonth = isTe ? `${f.monthName} మాసం` : `${f.monthName} Masa`;
-        const fType = isTe ? f.type : (f.significance || 'Sacred Celebration');
-        const fDesc = isTe ? (f.significance || 'పవిత్ర పూజా విధానం మరియు విశేష పుణ్యఫల దినం.') : 'Sacred auspicious day dedicated to spiritual worship and festivities.';
+        const fMonth = isTe ? `${f.monthName} మాసం` : `${f.monthNameEn || f.monthName} Month`;
+        const fType = isTe ? f.type : (f.typeEn || 'Sacred Celebration');
+        const fDesc = isTe ? (f.significance || 'పవిత్ర పూజా విధానం మరియు విశేష పుణ్యఫల దినం.') : (f.significanceEn || 'Sacred auspicious day dedicated to spiritual worship and festivities.');
 
         card.innerHTML = `
           <div>
@@ -110,7 +111,7 @@
 
           <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
             <span class="text-amber-300/80">${isTe ? 'చాంద్రమాన గణన' : 'Lunisolar System'}</span>
-            <span class="text-amber-400 font-mono">DETAILS ➔</span>
+            <span class="text-amber-400 font-mono">${isTe ? 'వివరాలు ➔' : 'DETAILS ➔'}</span>
           </div>
         `;
         container.appendChild(card);

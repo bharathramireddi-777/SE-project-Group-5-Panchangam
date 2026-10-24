@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>శ్రీ తెలుగు పంచాంగం • సౌర కుటుంబం (Solar System & Almanac)</title>
+  <title>VedicAstro • Solar System & Astronomical Almanac (వైదిక పంచాంగం)</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/cosmic.css">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,332 +13,433 @@
   
   <style>
     body {
-      background-color: #020617;
+      background-color: #000000;
       color: #ffffff;
-      font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif;
+      min-height: 100vh;
       overflow-x: hidden;
       margin: 0;
       padding: 0;
-      min-height: 100vh;
-      position: relative;
     }
 
-    /* FULL-PAGE IMMERSIVE BACKGROUND SPREAD */
+    /* FULL-PAGE IMMERSIVE SOLAR SYSTEM PLANETS BACKDROP */
     .cosmic-fixed-bg {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
       overflow: hidden;
       pointer-events: none;
-      background-color: #020617;
     }
 
     .cosmic-fixed-bg img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 35%;
-      /* High-definition rendering */
+      object-position: center 30%;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
+      opacity: 0.95;
       filter: contrast(1.15) brightness(1.08) saturate(1.22);
-      transform: scale(1.02) translateZ(0);
+      transform: scale(1.02);
       will-change: transform, filter;
     }
 
-    /* Subtle depth overlays */
+    /* Subtle depth overlays that let the planets shine while blending into pitch black */
     .cosmic-overlay-bloom {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
       pointer-events: none;
-      background: radial-gradient(circle at 50% 40%, rgba(59, 130, 246, 0.08) 0%, rgba(2, 6, 23, 0.35) 50%, rgba(2, 6, 23, 0.82) 85%, #020617 100%);
+      background: radial-gradient(circle at 50% 32%, transparent 35%, rgba(0, 0, 0, 0.4) 65%, #000000 100%);
     }
 
     .cosmic-vignette-bottom {
       position: fixed;
       bottom: 0;
       left: 0;
-      width: 100vw;
+      right: 0;
+      width: 100%;
       height: 45vh;
-      z-index: -1;
+      z-index: 0;
       pointer-events: none;
-      background: linear-gradient(to top, #020617 25%, rgba(2, 6, 23, 0.6) 70%, transparent 100%);
-    }
-
-    /* Glassmorphism Cards */
-    .portal-link {
-      background: rgba(8, 14, 28, 0.72);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.08);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .portal-link:hover {
-      background: rgba(15, 23, 42, 0.85);
-      border-color: rgba(56, 189, 248, 0.5);
-      box-shadow: 0 16px 45px -8px rgba(0, 0, 0, 0.9), 0 0 35px rgba(56, 189, 248, 0.25);
-      transform: translateY(-3px);
-    }
-
-    .gold-gradient-text {
-      background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 30%, #7dd3fc 70%, #38bdf8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .sun-glow-pill {
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(99, 102, 241, 0.15) 100%);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+      background: linear-gradient(to top, #000000 25%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between text-zinc-100 antialiased overflow-x-hidden max-w-full w-full">
 
-  <!-- 1. FULL-PAGE ENHANCED IMMERSIVE SOLAR SYSTEM IMAGE BACKGROUND -->
+  <!-- 1. FULL-PAGE SUBTLE COSMIC SOLAR SYSTEM BACKDROP -->
   <div class="cosmic-fixed-bg">
     <img 
       src="/images/solar-system-reference.webp" 
-      alt="Planetary Solar System with Galaxy Background"
+      alt="Planetary Solar System with Cosmic Galaxy Background"
       class="select-none"
     />
   </div>
   <div class="cosmic-overlay-bloom"></div>
   <div class="cosmic-vignette-bottom"></div>
 
-  <!-- 2. TOP BRANDING & HUD HEADER -->
-  <header class="w-full px-6 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-4 z-30 border-b border-white/10 bg-black/60 backdrop-blur-xl">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-400 via-blue-500 to-indigo-500 p-[1px] shadow-lg shadow-cyan-500/30">
-        <div class="w-full h-full bg-slate-950 rounded-xl flex items-center justify-center text-xl">
-          🪐
+  <!-- 2. MODERN OPENAI-STYLE TOP NAVIGATION (INJECTED DYNAMICALLY) -->
+  <div id="header-container"></div>
+
+  <!-- 3. UPCOMING FESTIVAL ALERT BANNER (CLEAN & WARM) -->
+  <div id="festival-alert-banner" class="w-full bg-black/60 border-b border-white/[0.06] px-4 sm:px-6 py-2.5 z-20 flex items-center justify-between backdrop-blur-md">
+    <div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="text-sm">🎉</span>
+        <div class="text-xs">
+          <span id="fest-banner-label" class="text-amber-400 font-medium mr-1" data-i18n="fest_alert_label">నేటి విశేషం / పండుగ:</span>
+          <strong id="fest-banner-name" class="text-zinc-100 font-semibold">--</strong>
+          <span id="fest-banner-desc" class="text-zinc-400 hidden sm:inline ml-1.5">--</span>
         </div>
       </div>
-      <div>
-        <div class="flex items-center gap-2">
-          <span class="text-[10px] font-mono tracking-widest text-cyan-400 font-bold uppercase" data-i18n="brand_sub">సౌర కుటుంబం • ఖగోళ పంచాంగం</span>
-          <span class="px-2 py-0.2 text-[9px] font-semibold bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 rounded-full">REAL-TIME</span>
-        </div>
-        <h1 class="text-xl font-bold gold-gradient-text font-serif" data-i18n="brand_title">
-          శ్రీ తెలుగు పంచాంగం
-        </h1>
-      </div>
+      <a href="/festivals" class="text-xs font-medium text-amber-300 hover:text-amber-200 transition flex items-center gap-1" data-i18n="fest_all_link">
+        అన్ని పండుగలు ➔
+      </a>
     </div>
-
-    <!-- Quick Location, Date & Controls -->
-    <div class="flex items-center gap-2 flex-wrap">
-      <div class="flex items-center bg-slate-900/80 border border-white/15 rounded-xl px-3 py-1.5 text-xs text-slate-200 backdrop-blur-md">
-        <span class="text-cyan-400 mr-1.5">📍</span>
-        <select id="home-city-select" onchange="onCityChange(this.value)" class="bg-transparent text-xs text-slate-200 focus:outline-none cursor-pointer">
-          <option value="17.3850,78.4867,Hyderabad,Asia/Kolkata" class="bg-slate-900">హైదరాబాద్ (Hyderabad)</option>
-          <option value="16.5062,80.6480,Vijayawada,Asia/Kolkata" class="bg-slate-900">విజయవాడ (Vijayawada)</option>
-          <option value="17.6868,83.2185,Visakhapatnam,Asia/Kolkata" class="bg-slate-900">విశాఖపట్నం (Vizag)</option>
-          <option value="13.6288,79.4192,Tirupati,Asia/Kolkata" class="bg-slate-900">తిరుపతి (Tirupati)</option>
-          <option value="17.9689,79.5941,Warangal,Asia/Kolkata" class="bg-slate-900">వరంగల్ (Warangal)</option>
-          <option value="12.9716,77.5946,Bengaluru,Asia/Kolkata" class="bg-slate-900">బెంగళూరు (Bengaluru)</option>
-          <option value="32.7767,-96.7970,Dallas,America/Chicago" class="bg-slate-900">డల్లాస్ (Dallas USA)</option>
-        </select>
-      </div>
-
-      <input type="date" id="home-date-picker" onchange="onDateChange(this.value)" class="bg-slate-900/80 border border-white/15 rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none cursor-pointer backdrop-blur-md">
-
-      <!-- Language Toggle Button -->
-      <button onclick="toggleLang()" class="px-3.5 py-1.5 bg-gradient-to-r from-cyan-600/40 to-blue-600/40 hover:from-cyan-600/60 hover:to-blue-600/60 border border-cyan-500/50 rounded-xl text-xs font-bold text-cyan-200 transition backdrop-blur-md shadow-md flex items-center gap-1.5">
-        <span>🌐</span>
-        <span id="home-lang-label">English</span>
-      </button>
-    </div>
-  </header>
-
-  <!-- 3. UPCOMING FESTIVAL ALERT BANNER -->
-  <div id="festival-alert-banner" class="w-full bg-gradient-to-r from-blue-950/70 via-indigo-950/80 to-blue-950/70 border-b border-cyan-500/30 px-6 py-2.5 z-20 flex items-center justify-between backdrop-blur-md">
-    <div class="flex items-center gap-3">
-      <span class="text-lg">🎉</span>
-      <div class="text-xs">
-        <span class="text-cyan-400 font-bold uppercase font-mono mr-1" data-i18n="fest_alert_label">పండుగ సమాచారం:</span>
-        <strong id="fest-banner-name" class="text-cyan-200">--</strong>
-        <span id="fest-banner-desc" class="text-stone-300 hidden sm:inline ml-2">--</span>
-      </div>
-    </div>
-    <a href="/festivals" class="text-xs font-mono font-bold text-cyan-400 hover:text-cyan-200 flex items-center gap-1" data-i18n="fest_all_link">
-      అన్ని పండుగలు ➔
-    </a>
   </div>
 
-  <!-- 4. HERO SECTION WITH EXPANSIVE VIEW OVER THE SOLAR SYSTEM -->
-  <main class="w-full max-w-7xl mx-auto px-4 pt-10 pb-6 z-20 flex flex-col items-center text-center">
+  <!-- 4. INTRODUCTION HERO SECTION -->
+  <main class="w-full max-w-7xl mx-auto px-4 pt-8 pb-4 z-20 flex flex-col items-center text-center">
     
     <!-- Hero Badges -->
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full sun-glow-pill text-xs font-bold text-cyan-300 mb-4 backdrop-blur-md">
-      <span data-i18n="hero_badge">✨ సౌర మండల ఖగోళ పంచాంగం • REALISTIC SOLAR SYSTEM</span>
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-xs font-medium text-amber-300 mb-3 backdrop-blur-md shadow-sm">
+      <span data-i18n="intro_hero_badge">🪔 పరిచయం • పంచాంగం & ఐదు ప్రధాన విభాగాలు</span>
     </div>
 
-    <h2 class="text-3xl sm:text-5xl md:text-6xl font-black font-display tracking-tight gold-gradient-text max-w-4xl drop-shadow-2xl" data-i18n="hero_title">
-      సూర్య కేంద్రక ఖగోళ కాలగణన
-    </h2>
+    <!-- Main Title -->
+    <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white max-w-4xl drop-shadow-xl font-sans" data-i18n="intro_hero_title">
+      పంచాంగం అంటే ఏమిటి? (Introduction to Panchangam)
+    </h1>
     
-    <p class="text-sm sm:text-base text-slate-200 max-w-2xl mt-3 leading-relaxed drop-shadow-md" data-i18n="hero_sub">
-      సూర్యుని చుట్టూ భ్రమణం చేస్తున్న గ్రహాలు, తిథి, నక్షత్ర, ముహూర్త మరియు చంద్రాష్టమ ఖగోళ స్థితిగతుల ప్రత్యక్ష దర్శనం.
+    <!-- Subtitle -->
+    <p class="text-xs sm:text-sm text-zinc-100 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] max-w-3xl mt-3 leading-relaxed font-normal" data-i18n="intro_hero_sub">
+      భారతీయ కాలగణన ప్రకారం పంచాంగం అనగా 'ఐదు అంగాలు' (పంచ + అంగ). సూర్యుడు, చంద్రుడు మరియు నక్షత్రాల ఖగోళ గతుల ఆధారంగా కాల ప్రవాహాన్ని నిర్ధారించే ప్రాచీన వైదిక కాలదర్శిక.
     </p>
 
-    <!-- Quick Direct Action Buttons -->
-    <div class="flex flex-wrap items-center justify-center gap-3 mt-6">
-      <a href="/panchangam" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 hover:from-cyan-400 hover:to-blue-500 transition shadow-xl shadow-cyan-500/25 flex items-center gap-2" data-i18n="hero_btn_panchangam">
-        🪔 నేటి సమగ్ర పంచాంగం (Daily View)
+    <!-- Classical Shloka Verse Card -->
+    <div class="mt-4 p-4 rounded-2xl bg-black/75 border border-amber-500/30 backdrop-blur-md max-w-2xl text-center shadow-lg">
+      <p class="text-xs sm:text-sm font-semibold text-amber-300 leading-relaxed font-serif" data-i18n="intro_verse">
+        శ్లోకం: తిథేశ్చ శ్రియమాప్నోతి వారాదాయుష్యవర్ధనం | నక్షత్రాద్ధరతే పాపం యోగాద్రోగనివారణం | కరణాత్కార్యసిద్ధిశ్చ పంచాంగం దశలక్షణం ||
+      </p>
+      <p class="text-[11px] sm:text-xs text-zinc-300 mt-2 font-normal" data-i18n="intro_verse_meaning">
+        తాత్పర్యం: తిథి సంపదను, వారం ఆయుష్షును, నక్షత్రం పాపనాశనాన్ని, యోగం రోగనివారణను, కరణం కార్యసిద్ధిని ప్రసాదిస్తాయి.
+      </p>
+    </div>
+
+    <!-- Direct Action Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-3 mt-5">
+      <a href="/panchangam" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 text-zinc-950 hover:brightness-105 transition shadow-lg shadow-amber-500/10 flex items-center gap-2" data-i18n="intro_btn_panchangam">
+        🪔 నేటి పంచాంగం చూడండి
       </a>
-      <a href="/calendar" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold bg-slate-950/80 hover:bg-slate-900 border border-emerald-400/50 text-emerald-300 transition backdrop-blur-md shadow-xl flex items-center gap-2" data-i18n="hero_btn_calendar">
-        📅 మాస క్యాలెండర్ (Monthly Grid)
+      <a href="/calendar" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-white/[0.08] hover:bg-white/[0.14] border border-white/15 text-zinc-200 transition backdrop-blur-md flex items-center gap-2" data-i18n="intro_btn_calendar">
+        📅 మాస క్యాలెండర్
       </a>
     </div>
 
   </main>
 
-  <!-- 5. TODAY OVERVIEW DASHBOARD (FLOATING GLASSMORPHISM CARDS) -->
-  <section class="max-w-7xl mx-auto w-full px-4 py-4 z-20 space-y-6">
+  <!-- 5. TODAY'S ESSENTIALS QUICK BAR -->
+  <section class="max-w-7xl mx-auto w-full px-4 z-20">
+    <div class="astra-card rounded-2xl p-3 sm:p-4 border border-white/10 bg-black/70 backdrop-blur-xl">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+        <div class="p-2 sm:p-3 rounded-xl bg-white/[0.03] border border-white/5">
+          <div class="text-[11px] text-zinc-400 flex items-center justify-center gap-1">
+            <span>🌅</span> <span data-i18n="quick_sunrise">సూర్యోదయం</span>
+          </div>
+          <div id="quick-sunrise" class="text-sm sm:text-base font-bold text-amber-300 mt-0.5">--:--</div>
+        </div>
+        <div class="p-2 sm:p-3 rounded-xl bg-white/[0.03] border border-white/5">
+          <div class="text-[11px] text-zinc-400 flex items-center justify-center gap-1">
+            <span>🌇</span> <span data-i18n="quick_sunset">సూర్యాస్తమయం</span>
+          </div>
+          <div id="quick-sunset" class="text-sm sm:text-base font-bold text-amber-400 mt-0.5">--:--</div>
+        </div>
+        <div class="p-2 sm:p-3 rounded-xl bg-white/[0.03] border border-white/5">
+          <div class="text-[11px] text-zinc-400 flex items-center justify-center gap-1">
+            <span>🌟</span> <span data-i18n="quick_abhijit">అభిజిత్ ముహూర్తం</span>
+          </div>
+          <div id="quick-abhijit" class="text-sm sm:text-base font-bold text-emerald-300 mt-0.5">--:--</div>
+        </div>
+        <div class="p-2 sm:p-3 rounded-xl bg-white/[0.03] border border-white/5">
+          <div class="text-[11px] text-zinc-400 flex items-center justify-center gap-1">
+            <span>🌙</span> <span data-i18n="quick_moon_sign">చంద్ర రాశి</span>
+          </div>
+          <div id="quick-moon" class="text-sm sm:text-base font-bold text-cyan-300 mt-0.5">--</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. THE 5 SUBDIVISIONS OF PANCHANGAM (PANCHA-ANGAS) -->
+  <section class="max-w-7xl mx-auto w-full px-4 py-8 z-20 space-y-6">
     
-    <!-- DASHBOARD ROW: 3 KEY CARDS -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      
-      <!-- CARD 1: LIVE TITHI TELEMETRY WITH PROGRESS BAR -->
-      <div class="portal-link rounded-3xl p-5 border-l-4 border-l-cyan-400 relative overflow-hidden">
-        <div class="flex items-center justify-between text-xs text-cyan-400 font-mono mb-2">
-          <span data-i18n="dash_tithi_heading">01. తిథి (CURRENT TITHI)</span>
-          <span id="dash-tithi-paksha" class="px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 text-[10px] font-bold">--</span>
-        </div>
-        
-        <div class="flex items-baseline justify-between mt-1">
-          <h3 id="dash-tithi-name" class="text-2xl font-bold text-slate-100">--</h3>
-          <span id="dash-tithi-pct" class="text-sm font-bold font-mono text-cyan-400">0%</span>
-        </div>
-        
-        <!-- Completion Progress Bar -->
-        <div class="w-full bg-slate-950/80 rounded-full h-2 mt-3 overflow-hidden border border-white/10">
-          <div id="dash-tithi-bar" class="bg-gradient-to-r from-cyan-500 to-blue-400 h-2 rounded-full transition-all duration-500" style="width: 0%;"></div>
-        </div>
-
-        <div class="flex items-center justify-between text-xs text-slate-300 mt-3 pt-2 border-t border-white/10">
-          <span data-i18n="dash_ends_at">ముగింపు సమయం:</span>
-          <strong id="dash-tithi-end" class="text-cyan-200 font-mono text-sm">--:--</strong>
-        </div>
+    <div class="flex items-center justify-between border-b border-white/10 pb-3">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+          <span>🪔</span> <span data-i18n="intro_angas_heading">పంచాంగాలు • 5 ప్రధాన విభాగాలు (The 5 Subdivisions)</span>
+        </h2>
+        <p class="text-xs text-zinc-400 mt-1" data-i18n="intro_angas_sub">
+          ప్రతిరోజూ కాలగణనలో ప్రాధాన్యత వహించే 5 మూలస్తంభాల సమగ్ర వివరణ & నేటి ప్రత్యక్ష స్థితి:
+        </p>
       </div>
-
-      <!-- CARD 2: LIVE NAKSHATRAM & PADA STATUS -->
-      <div class="portal-link rounded-3xl p-5 border-l-4 border-l-amber-400 relative overflow-hidden">
-        <div class="flex items-center justify-between text-xs text-amber-400 font-mono mb-2">
-          <span data-i18n="dash_nakshatra_heading">02. నక్షత్రం (LUNAR MANSION)</span>
-          <span id="dash-nakshatra-pada" class="px-2 py-0.5 rounded-full bg-amber-950/80 text-amber-300 border border-amber-500/40 text-[10px] font-bold">--</span>
-        </div>
-
-        <div class="flex items-baseline justify-between mt-1">
-          <h3 id="dash-nakshatra-name" class="text-2xl font-bold text-slate-100">--</h3>
-          <span id="dash-nakshatra-rem" class="text-xs font-mono text-amber-300">--</span>
-        </div>
-
-        <div class="text-xs text-slate-300 mt-3 flex items-center justify-between">
-          <span class="text-slate-400" data-i18n="dash_ruler_label">అధిపతి గ్రహం:</span>
-          <strong id="dash-nakshatra-ruler" class="text-slate-100 font-semibold">--</strong>
-        </div>
-
-        <div class="flex items-center justify-between text-xs text-slate-300 mt-3 pt-2 border-t border-white/10">
-          <span data-i18n="dash_ends_at">ముగింపు సమయం:</span>
-          <strong id="dash-nakshatra-end" class="text-amber-200 font-mono text-sm">--:--</strong>
-        </div>
-      </div>
-
-      <!-- CARD 3: DYNAMIC RAHU KALAM LIVE COUNTDOWN TIMER -->
-      <div class="portal-link rounded-3xl p-5 border-l-4 border-l-rose-500 relative overflow-hidden bg-rose-950/20">
-        <div class="flex items-center justify-between text-xs text-rose-400 font-mono mb-2">
-          <span data-i18n="dash_rahu_heading">03. రాహుకాలం కౌంట్‌డౌన్ (COUNTDOWN)</span>
-          <span id="dash-rahu-badge" class="px-2 py-0.5 rounded-full bg-rose-950/80 text-rose-300 border border-rose-500/40 text-[10px] font-bold font-mono">--</span>
-        </div>
-
-        <div class="mt-1">
-          <div id="dash-rahu-timer" class="text-3xl font-extrabold font-mono text-rose-200 tracking-tight">
-            --:--:--
-          </div>
-          <div id="dash-rahu-msg" class="text-xs text-rose-300 mt-1">
-            సమయ గణన
-          </div>
-        </div>
-
-        <div class="flex items-center justify-between text-xs text-slate-300 mt-3 pt-2 border-t border-white/10">
-          <span data-i18n="dash_rahu_slot_label">నేటి రాహుకాల సమయం:</span>
-          <strong id="dash-rahu-slot" class="text-rose-200 font-mono text-sm">--:-- - --:--</strong>
-        </div>
-      </div>
-
     </div>
 
-    <!-- 6. GATEWAY REDIRECTIONS (MODULE HUBS) -->
-    <div class="space-y-3 pt-2">
-      <div class="flex items-center justify-between">
-        <div class="text-xs font-mono text-cyan-300/80 tracking-widest uppercase font-bold" data-i18n="modules_heading">
-          ఖగోళ విభాగాలు • EXPLORE MODULES
+    <!-- 5 Cards Responsive Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+      
+      <!-- SUBDIVISION 1: TITHI -->
+      <div class="astra-card rounded-2xl p-4 sm:p-5 border border-white/10 hover:border-amber-400/40 bg-black/65 backdrop-blur-xl transition group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xl">🌙</span>
+            <h3 class="text-sm sm:text-base font-bold text-white" data-i18n="intro_tithi_title">
+              1. తిథి (Tithi) • చంద్రకళా విభాగం
+            </h3>
+          </div>
+
+          <!-- Live Telemetry -->
+          <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/5 mb-3">
+            <div class="text-[10px] uppercase tracking-wider text-amber-400 font-semibold mb-1" data-i18n="intro_label_live">
+              నేటి ప్రత్యక్ష స్థితి:
+            </div>
+            <div class="flex items-center justify-between gap-1 flex-wrap">
+              <span id="anga-tithi-val" class="text-base sm:text-lg font-bold text-white">--</span>
+              <span id="anga-tithi-paksha" class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">--</span>
+            </div>
+            <div class="text-[11px] text-zinc-400 mt-1">
+              <span data-i18n="intro_label_ends">ముగింపు:</span> <strong id="anga-tithi-end" class="text-zinc-200">--:--</strong>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-xs text-zinc-300 leading-relaxed" data-i18n="intro_tithi_desc">
+            సూర్యుడు మరియు చంద్రుల మధ్య కోణీయ దూరం ప్రతి 12 డిగ్రీలకు ఒక తిథిగా ఏర్పడుతుంది. శుక్ల పక్షం (15 తిథులు), కృష్ణ పక్షం (15 తిథులు) కలిసి ఒక చాంద్రమాన మాసంలో 30 తిథులు ఉంటాయి.
+          </p>
         </div>
-        <span class="text-xs text-cyan-400 font-mono" data-i18n="modules_sub">అన్ని విభాగాలు అందుబాటులో ఉన్నాయి ➔</span>
+
+        <!-- Fruit / Benefit -->
+        <div class="mt-3 p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[11px] font-medium text-amber-300 leading-snug" data-i18n="intro_tithi_fruit">
+          ఫలం: శ్రీయమాప్నోతి (సంపద, ఆధ్యాత్మిక తేజస్సు, నిత్య పూజలు & వ్రతాల నిర్ణయం).
+        </div>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-        
-        <!-- Redirect 1: Detailed Daily Panchangam -->
-        <a href="/panchangam" class="portal-link rounded-2xl p-4 text-center group cursor-pointer block border-l-4 border-l-cyan-400">
-          <div class="text-2xl mb-1 group-hover:scale-110 transition">🪔</div>
-          <div class="text-xs font-bold text-white group-hover:text-cyan-300 transition" data-i18n="mod_panchangam_title">వివర పంచాంగం</div>
-          <div class="text-[10px] text-slate-400 mt-0.5" data-i18n="mod_panchangam_desc">5 అంగాల సమగ్ర పట్టిక</div>
-        </a>
+      <!-- SUBDIVISION 2: VAARAM -->
+      <div class="astra-card rounded-2xl p-4 sm:p-5 border border-white/10 hover:border-amber-400/40 bg-black/65 backdrop-blur-xl transition group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xl">☀️</span>
+            <h3 class="text-sm sm:text-base font-bold text-white" data-i18n="intro_vaaram_title">
+              2. వారం (Vaaram) • సౌర దినం
+            </h3>
+          </div>
 
-        <!-- Redirect 2: Monthly Calendar View -->
-        <a href="/calendar" class="portal-link rounded-2xl p-4 text-center group cursor-pointer block border-l-4 border-l-emerald-400">
-          <div class="text-2xl mb-1 group-hover:scale-110 transition">📅</div>
-          <div class="text-xs font-bold text-white group-hover:text-emerald-300 transition" data-i18n="mod_calendar_title">నెలవారీ క్యాలెండర్</div>
-          <div class="text-[10px] text-slate-400 mt-0.5" data-i18n="mod_calendar_desc">పూర్తి మాస దినదర్శిక</div>
-        </a>
+          <!-- Live Telemetry -->
+          <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/5 mb-3">
+            <div class="text-[10px] uppercase tracking-wider text-amber-400 font-semibold mb-1" data-i18n="intro_label_live">
+              నేటి ప్రత్యక్ష స్థితి:
+            </div>
+            <div class="text-base sm:text-lg font-bold text-white" id="anga-vaaram-val">--</div>
+            <div class="text-[11px] text-zinc-400 mt-1">
+              <span data-i18n="intro_label_lord">అధిపతి:</span> <strong id="anga-vaaram-ruler" class="text-amber-300">--</strong>
+            </div>
+          </div>
 
-        <!-- Redirect 3: 12 Raashis -->
-        <a href="/raashulu" class="portal-link rounded-2xl p-4 text-center group cursor-pointer block border-l-4 border-l-violet-400">
-          <div class="text-2xl mb-1 group-hover:scale-110 transition">♈</div>
-          <div class="text-xs font-bold text-white group-hover:text-violet-300 transition" data-i18n="mod_raashulu_title">ద్వాదశ రాశులు</div>
-          <div class="text-[10px] text-slate-400 mt-0.5" data-i18n="mod_raashulu_desc">12 రాశులు & చంద్రాష్టమం</div>
-        </a>
+          <!-- Description -->
+          <p class="text-xs text-zinc-300 leading-relaxed" data-i18n="intro_vaaram_desc">
+            సూర్యోదయం నుండి మరుసటి సూర్యోదయం వరకు గల సౌర దినం. రవి, సోమ, మంగళ, బుధ, గురు, శుక్ర, శని అనే 7 ప్రధాన గ్రహాధిపతుల ఆధారంగా 7 వారాలు ఏర్పడ్డాయి.
+          </p>
+        </div>
 
-        <!-- Redirect 4: 27 Nakshatras -->
-        <a href="/nakshatralu" class="portal-link rounded-2xl p-4 text-center group cursor-pointer block border-l-4 border-l-amber-400">
-          <div class="text-2xl mb-1 group-hover:scale-110 transition">✨</div>
-          <div class="text-xs font-bold text-white group-hover:text-amber-300 transition" data-i18n="mod_nakshatralu_title">27 నక్షత్రాలు</div>
-          <div class="text-[10px] text-slate-400 mt-0.5" data-i18n="mod_nakshatralu_desc">నక్షత్ర పాదాలు & అధిపతులు</div>
-        </a>
-
-        <!-- Redirect 5: Muhurthams & Choghadiya -->
-        <a href="/muhurthams" class="portal-link rounded-2xl p-4 text-center group cursor-pointer block border-l-4 border-l-rose-400">
-          <div class="text-2xl mb-1 group-hover:scale-110 transition">⏳</div>
-          <div class="text-xs font-bold text-white group-hover:text-rose-300 transition" data-i18n="mod_muhurthams_title">శుభ & వర్జ్యాలు</div>
-          <div class="text-[10px] text-slate-400 mt-0.5" data-i18n="mod_muhurthams_desc">చోఘడియా & సమయాలు</div>
-        </a>
-
-        <!-- Redirect 6: Festivals -->
-        <a href="/festivals" class="portal-link rounded-2xl p-4 text-center group cursor-pointer block border-l-4 border-l-indigo-400 col-span-2 sm:col-span-1">
-          <div class="text-2xl mb-1 group-hover:scale-110 transition">🎉</div>
-          <div class="text-xs font-bold text-white group-hover:text-indigo-300 transition" data-i18n="mod_festivals_title">పండుగలు & వ్రతాలు</div>
-          <div class="text-[10px] text-slate-400 mt-0.5" data-i18n="mod_festivals_desc">సంవత్సర పర్వదినాలు</div>
-        </a>
-
+        <!-- Fruit / Benefit -->
+        <div class="mt-3 p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[11px] font-medium text-amber-300 leading-snug" data-i18n="intro_vaaram_fruit">
+          ఫలం: ఆయుష్యవర్ధనం (శారీరక శక్తి, జీవకళ మరియు దీర్ఘాయుష్షు వృద్ధి).
+        </div>
       </div>
+
+      <!-- SUBDIVISION 3: NAKSHATRAM -->
+      <div class="astra-card rounded-2xl p-4 sm:p-5 border border-white/10 hover:border-cyan-400/40 bg-black/65 backdrop-blur-xl transition group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xl">✨</span>
+            <h3 class="text-sm sm:text-base font-bold text-white" data-i18n="intro_nakshatra_title">
+              3. నక్షత్రం (Nakshatram) • నక్షత్ర మండలం
+            </h3>
+          </div>
+
+          <!-- Live Telemetry -->
+          <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/5 mb-3">
+            <div class="text-[10px] uppercase tracking-wider text-cyan-400 font-semibold mb-1" data-i18n="intro_label_live">
+              నేటి ప్రత్యక్ష స్థితి:
+            </div>
+            <div class="flex items-center justify-between gap-1 flex-wrap">
+              <span id="anga-nakshatra-val" class="text-base sm:text-lg font-bold text-white">--</span>
+              <span id="anga-nakshatra-pada" class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">--</span>
+            </div>
+            <div class="text-[11px] text-zinc-400 mt-1 flex items-center justify-between">
+              <span><span data-i18n="intro_label_lord">అధిపతి:</span> <strong id="anga-nakshatra-ruler" class="text-cyan-300">--</strong></span>
+              <span><span data-i18n="intro_label_ends">ముగింపు:</span> <strong id="anga-nakshatra-end" class="text-zinc-200">--:--</strong></span>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-xs text-zinc-300 leading-relaxed" data-i18n="intro_nakshatra_desc">
+            360 డిగ్రీల రాశి చక్రంలో చంద్రుని సంచార మార్గంలోని 27 నక్షత్రాలు (ఒక్కొక్కటి 13°20'). ప్రతి నక్షత్రానికి 4 పాదాలు ఉంటాయి (మొత్తం 108 పాదాలు).
+          </p>
+        </div>
+
+        <!-- Fruit / Benefit -->
+        <div class="mt-3 p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-[11px] font-medium text-cyan-300 leading-snug" data-i18n="intro_nakshatra_fruit">
+          ఫలం: పాపహరణం (మానసిక ప్రశాంతత, జన్మ నైజం & శుభకార్యాల ఆరంభం).
+        </div>
+      </div>
+
+      <!-- SUBDIVISION 4: YOGAM -->
+      <div class="astra-card rounded-2xl p-4 sm:p-5 border border-white/10 hover:border-emerald-400/40 bg-black/65 backdrop-blur-xl transition group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xl">🧘</span>
+            <h3 class="text-sm sm:text-base font-bold text-white" data-i18n="intro_yogam_title">
+              4. యోగం (Yogam) • రవిచంద్ర సంయోగం
+            </h3>
+          </div>
+
+          <!-- Live Telemetry -->
+          <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/5 mb-3">
+            <div class="text-[10px] uppercase tracking-wider text-emerald-400 font-semibold mb-1" data-i18n="intro_label_live">
+              నేటి ప్రత్యక్ష స్థితి:
+            </div>
+            <div class="flex items-center justify-between gap-1 flex-wrap">
+              <span id="anga-yogam-val" class="text-base sm:text-lg font-bold text-white">--</span>
+              <span id="anga-yogam-nature" class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">--</span>
+            </div>
+            <div class="text-[11px] text-zinc-400 mt-1">
+              <span data-i18n="intro_label_ends">ముగింపు:</span> <strong id="anga-yogam-end" class="text-zinc-200">--:--</strong>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-xs text-zinc-300 leading-relaxed" data-i18n="intro_yogam_desc">
+            సూర్యుడు మరియు చంద్రుల స్పష్ట భోగాల మొత్తం (సూర్య స్ఫుటం + చంద్ర స్ఫుటం / 13°20'). మొత్తం 27 యోగాలు ఉంటాయి (విష్కంభం నుండి వైధృతి వరకు).
+          </p>
+        </div>
+
+        <!-- Fruit / Benefit -->
+        <div class="mt-3 p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-medium text-emerald-300 leading-snug" data-i18n="intro_yogam_fruit">
+          ఫలం: రోగనివారణం (ఆరోగ్య రక్షణ, శారీరక సమతుల్యత మరియు దోష నివారణ).
+        </div>
+      </div>
+
+      <!-- SUBDIVISION 5: KARANAM -->
+      <div class="astra-card rounded-2xl p-4 sm:p-5 border border-white/10 hover:border-violet-400/40 bg-black/65 backdrop-blur-xl transition group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xl">⚡</span>
+            <h3 class="text-sm sm:text-base font-bold text-white" data-i18n="intro_karanam_title">
+              5. కరణం (Karanam) • అర్ధ తిథి
+            </h3>
+          </div>
+
+          <!-- Live Telemetry -->
+          <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/5 mb-3">
+            <div class="text-[10px] uppercase tracking-wider text-violet-400 font-semibold mb-1" data-i18n="intro_label_live">
+              నేటి ప్రత్యక్ష స్థితి:
+            </div>
+            <div class="flex items-center justify-between gap-1 flex-wrap">
+              <span id="anga-karanam-val" class="text-base sm:text-lg font-bold text-white">--</span>
+              <span id="anga-karanam-type" class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-300 border border-violet-500/30">--</span>
+            </div>
+            <div class="text-[11px] text-zinc-400 mt-1">
+              <span data-i18n="intro_label_next">తదుపరి:</span> <strong id="anga-karanam-next" class="text-violet-300">--</strong>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-xs text-zinc-300 leading-relaxed" data-i18n="intro_karanam_desc">
+            ఒక తిథిలోని సగభాగం (6 డిగ్రీలు) కరణం అవుతుంది. ఒక మాసంలో 60 కరణాలుంటాయి. 7 చర కరణాలు (బవ, బాలవ...) మరియు 4 స్థిర కరణాలు (శకుని, చతుష్పాద...) ఉంటాయి.
+          </p>
+        </div>
+
+        <!-- Fruit / Benefit -->
+        <div class="mt-3 p-2 rounded-lg bg-violet-500/10 border border-violet-500/20 text-[11px] font-medium text-violet-300 leading-snug" data-i18n="intro_karanam_fruit">
+          ఫలం: కార్యసిద్ధి (తీసుకునే నిర్ణయాలు, నూతన ఒప్పందాలు & వ్యవహారాల సాఫల్యం).
+        </div>
+      </div>
+
     </div>
 
   </section>
 
-  <!-- 7. FOOTER -->
-  <footer class="border-t border-white/10 bg-black/80 py-4 text-center text-xs text-slate-400 z-20 backdrop-blur-md mt-6">
-    <p data-i18n="footer_text">శ్రీ తెలుగు పంచాంగం • సౌర కుటుంబ ఖగోళ వివరాలు & పంచాంగ గణన వ్యవస్థ</p>
+  <!-- 7. VEDIC TIME & MUHURTHA PRINCIPLES -->
+  <section class="max-w-7xl mx-auto w-full px-4 pb-10 z-20 space-y-6">
+    
+    <div class="flex items-center justify-between border-b border-white/10 pb-3">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+          <span>⏳</span> <span data-i18n="intro_timing_heading">వైదిక కాలగణన & ముహూర్త సూత్రాలు</span>
+        </h2>
+        <p class="text-xs text-zinc-400 mt-1" data-i18n="intro_timing_sub">
+          పాశ్చాత్య అర్ధరాత్రి గణనకు భిన్నంగా సనాతన సూర్యోదయ ఆధారిత జీవన చక్రం:
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      
+      <!-- PRINCIPLE 1: SUNRISE DAWN -->
+      <div class="astra-card rounded-2xl p-5 border border-white/10 hover:border-amber-400/40 bg-black/60 backdrop-blur-xl transition group">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-semibold text-amber-300 flex items-center gap-1.5">
+            <span>🌅</span> <span data-i18n="principle_sunrise_title">సూర్యోదయమే దినారంభం (Solar Dawn)</span>
+          </span>
+        </div>
+        <div class="text-xl font-bold text-amber-200 mt-2" id="prin-sunrise-val">--:-- - --:--</div>
+        <p class="text-xs text-zinc-300 leading-relaxed mt-2.5 pt-2.5 border-t border-white/[0.08]" data-i18n="principle_sunrise_desc">
+          వైదిక సంప్రదాయంలో రోజు సూర్యోదయంతో మొదలవుతుంది. తిథి, వారం, ముహూర్తాలన్నీ స్థానిక సూర్యోదయాన్ని ప్రాతిపదికగా తీసుకుని గణిస్తారు.
+        </p>
+      </div>
+
+      <!-- PRINCIPLE 2: ABHIJIT MUHURTHAM -->
+      <div class="astra-card rounded-2xl p-5 border border-white/10 hover:border-emerald-400/40 bg-black/60 backdrop-blur-xl transition group">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-semibold text-emerald-300 flex items-center gap-1.5">
+            <span>🌟</span> <span data-i18n="principle_abhijit_title">అభిజిత్ ముహూర్తం (విజయ కాలం)</span>
+          </span>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-medium border border-emerald-500/30" data-i18n="badge_victorious">విజయప్రదం</span>
+        </div>
+        <div class="text-xl font-bold text-emerald-200 mt-2" id="prin-abhijit-val">--:-- - --:--</div>
+        <p class="text-xs text-zinc-300 leading-relaxed mt-2.5 pt-2.5 border-t border-white/[0.08]" data-i18n="principle_abhijit_desc">
+          పగటి కాలాన్ని 15 ముహూర్తాలుగా విభజిస్తే, మధ్యాహ్నం వచ్చే 8వ ముహూర్తం 'అభిజిత్'. ఇది సమస్త గ్రహ దోషాలను హరించి సకల కార్యజయాన్ని ఇస్తుంది.
+        </p>
+      </div>
+
+      <!-- PRINCIPLE 3: RAHU KALAM -->
+      <div class="astra-card rounded-2xl p-5 border border-white/10 hover:border-rose-400/40 bg-black/60 backdrop-blur-xl transition group">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-semibold text-rose-300 flex items-center gap-1.5">
+            <span>⏳</span> <span data-i18n="principle_rahu_title">రాహుకాలం & వర్జ్యం (జాగ్రత్త సమయాలు)</span>
+          </span>
+          <span id="dash-rahu-badge" class="px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-300 text-[10px] font-medium border border-rose-500/30">--</span>
+        </div>
+        <div class="flex items-baseline justify-between mt-2">
+          <div class="text-xl font-bold text-rose-200" id="dash-rahu-slot">--:-- - --:--</div>
+          <div id="dash-rahu-timer" class="text-xs font-semibold text-rose-300"></div>
+        </div>
+        <p class="text-xs text-zinc-300 leading-relaxed mt-2.5 pt-2.5 border-t border-white/[0.08]" data-i18n="principle_rahu_desc">
+          పగటి కాలంలో రాహువు ఆధిపత్యంలో ఉండే 1/8వ భాగం రాహుకాలం. అలాగే నక్షత్రంలో విష ఘడియల సమయం వర్జ్యం. ఈ సమయాల్లో కొత్త పనులు ప్రారంభించరాదు.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- 8. NATURAL FOOTER -->
+  <footer class="border-t border-white/[0.08] bg-black/90 py-6 text-center text-xs text-zinc-400 z-20 backdrop-blur-md mt-12">
+    <p data-i18n="footer_text">శ్రీ శుభ పంచాంగం • వేదిక్ ఆస్ట్రో • సనాతన ధర్మ సంప్రదాయాల ప్రకారం ఖచ్చితమైన దిన పంచాంగం</p>
   </footer>
 
   <script src="/cosmic.js"></script>
@@ -345,10 +447,10 @@
     let rahuTimerInterval = null;
 
     document.addEventListener('DOMContentLoaded', async () => {
-      // Synchronize City & Date
-      document.getElementById('home-city-select').value = getStoredCity();
-      document.getElementById('home-date-picker').value = getStoredDate();
-
+      // 3D dynamic starfield background animation
+      initStarfield();
+      // Render unified modern top header for Home
+      renderCosmicHeader('home');
       applyI18nTranslations();
       loadTodayOverview();
     });
@@ -361,38 +463,126 @@
       const isTe = lang === 'te';
       const dict = I18N[lang] || I18N.te;
 
-      // 1. Tithi Progress Card
+      // 0. Today's Essentials Quick Bar
+      const astro = data.astronomy || data.sunMoonTimings || {};
+      const elSunrise = document.getElementById('quick-sunrise');
+      const elSunset = document.getElementById('quick-sunset');
+      if (elSunrise) elSunrise.textContent = astro.sunrise || '--:--';
+      if (elSunset) elSunset.textContent = astro.sunset || '--:--';
+
+      const prinSunrise = document.getElementById('prin-sunrise-val');
+      if (prinSunrise) {
+        prinSunrise.textContent = `${astro.sunrise || '--:--'} - ${astro.sunset || '--:--'}`;
+      }
+
+      if (data.auspiciousTimings && data.auspiciousTimings.abhijitMuhurtham) {
+        const ab = data.auspiciousTimings.abhijitMuhurtham;
+        const abStr = typeof ab === 'string' ? ab : `${ab.start} - ${ab.end}`;
+        const elAb = document.getElementById('quick-abhijit');
+        if (elAb) elAb.textContent = abStr;
+        const elPrinAb = document.getElementById('prin-abhijit-val');
+        if (elPrinAb) elPrinAb.textContent = abStr;
+      }
+
+      if (data.astrology && data.astrology.chandraRasi) {
+        const c = data.astrology.chandraRasi;
+        const elMoon = document.getElementById('quick-moon');
+        if (elMoon) {
+          elMoon.textContent = isTe 
+            ? `${c.telugu} రాశి` 
+            : (c.english.includes('(') ? c.english.match(/\((.*?)\)/)[1] : c.english);
+        }
+      }
+
+      // 1. ANGA 1: Tithi
       const t = data.panchaAngas.tithi;
-      document.getElementById('dash-tithi-name').textContent = isTe ? `${t.telugu} తిథి` : `${t.english} Tithi`;
-      document.getElementById('dash-tithi-paksha').textContent = isTe ? t.paksha : t.pakshaEn;
-      document.getElementById('dash-tithi-pct').textContent = `${t.completedPct}% ${dict.dash_completed_suffix}`;
-      document.getElementById('dash-tithi-bar').style.width = `${t.completedPct}%`;
-      document.getElementById('dash-tithi-end').textContent = t.endsAt;
+      const elTithiVal = document.getElementById('anga-tithi-val');
+      const elTithiPaksha = document.getElementById('anga-tithi-paksha');
+      const elTithiEnd = document.getElementById('anga-tithi-end');
+      if (elTithiVal) elTithiVal.textContent = isTe ? `${t.telugu}` : `${t.english}`;
+      if (elTithiPaksha) elTithiPaksha.textContent = isTe ? t.paksha : t.pakshaEn;
+      if (elTithiEnd) elTithiEnd.textContent = t.endsAt;
 
-      // 2. Nakshatra Card
+      // 2. ANGA 2: Vaaram
+      const v = data.panchaAngas.vaaram;
+      const elVaaramVal = document.getElementById('anga-vaaram-val');
+      const elVaaramRuler = document.getElementById('anga-vaaram-ruler');
+      if (elVaaramVal) {
+        elVaaramVal.textContent = isTe 
+          ? (v.telugu.includes('(') ? v.telugu.split(' ')[0] : v.telugu) 
+          : (v.english.includes('(') ? v.english.split(' ')[0] : v.english);
+      }
+      if (elVaaramRuler) {
+        elVaaramRuler.textContent = isTe 
+          ? v.ruler 
+          : (v.ruler.includes('(') ? v.ruler.match(/\((.*?)\)/)[1] : v.ruler);
+      }
+
+      // 3. ANGA 3: Nakshatram
       const n = data.panchaAngas.nakshatram;
-      document.getElementById('dash-nakshatra-name').textContent = isTe ? `${n.telugu} నక్షత్రం` : `${n.english} Star`;
-      document.getElementById('dash-nakshatra-pada').textContent = isTe ? `పాదం ${n.pada}` : `Pada ${n.pada}`;
-      document.getElementById('dash-nakshatra-rem').textContent = dict.dash_hours_rem.replace('{h}', n.hoursRemaining);
-      document.getElementById('dash-nakshatra-ruler').textContent = n.ruler;
-      document.getElementById('dash-nakshatra-end').textContent = n.endsAt;
+      const elNakVal = document.getElementById('anga-nakshatra-val');
+      const elNakPada = document.getElementById('anga-nakshatra-pada');
+      const elNakRuler = document.getElementById('anga-nakshatra-ruler');
+      const elNakEnd = document.getElementById('anga-nakshatra-end');
+      if (elNakVal) elNakVal.textContent = isTe ? `${n.telugu}` : `${n.english}`;
+      if (elNakPada) elNakPada.textContent = isTe ? `పాదం ${n.pada}` : `Pada ${n.pada}`;
+      if (elNakRuler) {
+        elNakRuler.textContent = isTe 
+          ? n.ruler 
+          : (n.ruler.includes('(') ? n.ruler.match(/\((.*?)\)/)[1] : n.ruler);
+      }
+      if (elNakEnd) elNakEnd.textContent = n.endsAt;
 
-      // 3. Rahu Kalam Countdown Timer
+      // 4. ANGA 4: Yogam
+      const y = data.panchaAngas.yogam;
+      const elYogVal = document.getElementById('anga-yogam-val');
+      const elYogNature = document.getElementById('anga-yogam-nature');
+      const elYogEnd = document.getElementById('anga-yogam-end');
+      if (elYogVal) elYogVal.textContent = isTe ? `${y.telugu}` : `${y.english}`;
+      if (elYogNature) {
+        elYogNature.textContent = isTe ? (y.natureTe || 'శుభం') : (y.nature || 'Auspicious');
+      }
+      if (elYogEnd) elYogEnd.textContent = y.endsAt;
+
+      // 5. ANGA 5: Karanam
+      const k = data.panchaAngas.karanam;
+      const elKarVal = document.getElementById('anga-karanam-val');
+      const elKarType = document.getElementById('anga-karanam-type');
+      const elKarNext = document.getElementById('anga-karanam-next');
+      if (elKarVal) elKarVal.textContent = isTe ? `${k.telugu}` : `${k.english}`;
+      if (elKarType) {
+        elKarType.textContent = isTe 
+          ? (k.id <= 7 ? 'చర కరణం' : 'స్థిర కరణం') 
+          : (k.id <= 7 ? 'Movable' : 'Fixed');
+      }
+      if (elKarNext && k.upcoming) {
+        elKarNext.textContent = isTe ? k.upcoming.telugu : k.upcoming.english;
+      }
+
+      // 6. Timing Windows: Rahu Kalam
       const r = data.inauspiciousTimings.rahuKalam;
-      document.getElementById('dash-rahu-slot').textContent = `${r.start} - ${r.end}`;
-      
+      const elRahuSlot = document.getElementById('dash-rahu-slot');
+      if (elRahuSlot) elRahuSlot.textContent = `${r.start} - ${r.end}`;
       startRahuTimer(r.start, r.end, lang);
 
-      // 4. Festival Alert Banner
+      // 7. Festival Alert Banner
       const fBanner = data.festivalBanner;
-      if (fBanner && fBanner.next) {
-        document.getElementById('fest-banner-name').textContent = isTe ? fBanner.next.name : fBanner.next.english;
-        document.getElementById('fest-banner-desc').textContent = isTe ? `• ${fBanner.next.significance}` : `• ${fBanner.next.type || 'Sacred Festival'}`;
+      if (fBanner) {
+        const fest = fBanner.current || fBanner.next;
+        if (fest) {
+          const lbl = document.getElementById('fest-banner-label');
+          if (lbl) lbl.textContent = fBanner.current ? (isTe ? 'నేటి పండుగ:' : 'Today\'s Festival:') : (isTe ? 'రాబోవు పండుగ:' : 'Upcoming Festival:');
+          const elFestName = document.getElementById('fest-banner-name');
+          const elFestDesc = document.getElementById('fest-banner-desc');
+          if (elFestName) elFestName.textContent = isTe ? fest.name : fest.english;
+          if (elFestDesc) elFestDesc.textContent = isTe ? `• ${fest.significance}` : `• ${fest.significanceEn || fest.typeEn || 'Sacred Celebration'}`;
+        }
       }
     }
 
     function startRahuTimer(startStr, endStr, lang) {
       if (rahuTimerInterval) clearInterval(rahuTimerInterval);
+      const isTe = lang === 'te';
       const dict = I18N[lang] || I18N.te;
 
       function updateTimer() {
@@ -407,22 +597,22 @@
         if (now < start) {
           // Upcoming
           badge.textContent = dict.badge_upcoming;
-          badge.className = "px-2 py-0.5 rounded-full bg-amber-950/80 text-amber-300 border border-amber-500/40 text-[10px] font-bold font-mono";
+          badge.className = "px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[11px] font-medium";
           const diffMs = start - now;
-          timerTxt.textContent = formatMsToClock(diffMs);
+          timerTxt.textContent = `(${formatMsToClock(diffMs, isTe)})`;
           msgTxt.textContent = dict.dash_rahu_start_msg;
         } else if (now >= start && now <= end) {
           // Active Now
           badge.textContent = dict.badge_active;
-          badge.className = "px-2 py-0.5 rounded-full bg-rose-950/80 text-rose-300 border border-rose-500/50 text-[10px] font-bold font-mono animate-pulse";
+          badge.className = "px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40 text-[11px] font-medium animate-pulse";
           const diffMs = end - now;
-          timerTxt.textContent = formatMsToClock(diffMs);
+          timerTxt.textContent = `(${formatMsToClock(diffMs, isTe)})`;
           msgTxt.textContent = dict.dash_rahu_active_msg;
         } else {
           // Completed
           badge.textContent = dict.badge_completed;
-          badge.className = "px-2 py-0.5 rounded-full bg-slate-900/80 text-slate-400 border border-white/10 text-[10px] font-bold font-mono";
-          timerTxt.textContent = "00:00:00";
+          badge.className = "px-2.5 py-0.5 rounded-full bg-zinc-800/80 text-zinc-400 border border-zinc-700/60 text-[11px] font-medium";
+          timerTxt.textContent = "";
           msgTxt.textContent = dict.dash_rahu_end_msg;
         }
       }
@@ -443,33 +633,19 @@
       return d;
     }
 
-    function formatMsToClock(ms) {
+    function formatMsToClock(ms, isTe = true) {
       const totalSec = Math.floor(Math.max(0, ms) / 1000);
-      const h = String(Math.floor(totalSec / 3600)).padStart(2, '0');
-      const m = String(Math.floor((totalSec % 3600) / 60)).padStart(2, '0');
-      const s = String(totalSec % 60).padStart(2, '0');
-      return `${h}h ${m}m ${s}s`;
-    }
-
-    function onCityChange(val) {
-      setStoredCity(val);
-      loadTodayOverview();
-    }
-
-    function onDateChange(val) {
-      setStoredDate(val);
-      loadTodayOverview();
-    }
-
-    function toggleLang() {
-      const cur = getStoredLang();
-      const next = cur === 'te' ? 'en' : 'te';
-      setStoredLang(next);
-      applyI18nTranslations(next);
-      loadTodayOverview();
+      const h = Math.floor(totalSec / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = totalSec % 60;
+      if (h > 0) {
+        return isTe ? `${h} గం ${m} నిమి` : `${h}h ${m}m`;
+      }
+      return isTe ? `${m} నిమి ${s} సెక` : `${m}m ${s}s`;
     }
 
     window.onDataStateChanged = () => {
+      renderCosmicHeader('home');
       applyI18nTranslations();
       loadTodayOverview();
     };
