@@ -26,6 +26,89 @@ function normalizeAngle(degrees) {
   return angle;
 }
 
+/**
+ * Returns the wall-clock date/time parts for an instant in a given IANA time zone.
+ */
+function getZonedParts(date, timeZone = "Asia/Kolkata") {
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    hourCycle: "h23",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
+
+  const parts = {};
+  for (const part of formatter.formatToParts(date)) {
+    parts[part.type] = part.value;
+  }
+
+  const year = Number(parts.year);
+  const month = Number(parts.month);
+  const day = Number(parts.day);
+
+  return {
+    year,
+    month,
+    day,
+    hour: Number(parts.hour),
+    minute: Number(parts.minute),
+    second: Number(parts.second),
+    weekday: new Date(Date.UTC(year, month - 1, day)).getUTCDay()
+  };
+}
+
+function getTimeZoneOffsetMs(date, timeZone) {
+  const parts = getZonedParts(date, timeZone);
+  const asUtc = Date.UTC(
+    parts.year,
+    parts.month - 1,
+    parts.day,
+    parts.hour,
+    parts.minute,
+    parts.second
+  );
+  return asUtc - date.getTime();
+}
+
+/**
+ * Converts a local wall-clock date/time in a time zone into a UTC Date instant.
+ */
+function zonedDateTimeToUtc(year, month, day, hour = 0, minute = 0, second = 0, timeZone = "Asia/Kolkata") {
+  if (typeof Temporal !== "undefined" && Temporal.ZonedDateTime) {
+    const zoned = Temporal.ZonedDateTime.from({
+      timeZone,
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second
+    });
+    return new Date(Number(zoned.epochMilliseconds));
+  }
+
+  const utcGuess = Date.UTC(year, month - 1, day, hour, minute, second);
+  let offset = getTimeZoneOffsetMs(new Date(utcGuess), timeZone);
+  let result = new Date(utcGuess - offset);
+  offset = getTimeZoneOffsetMs(result, timeZone);
+  return new Date(utcGuess - offset);
+}
+
+function localDateTimeToUtc(dateStr, timeStr, timeZone = "Asia/Kolkata") {
+  const [year, month, day] = dateStr.split("-").map(Number);
+  const [hour, minute] = (timeStr || "00:00").split(":").map(Number);
+  return zonedDateTimeToUtc(year, month, day, hour, minute, 0, timeZone);
+}
+
+function getStartOfLocalDay(date, timeZone = "Asia/Kolkata") {
+  const parts = getZonedParts(date, timeZone);
+  return zonedDateTimeToUtc(parts.year, parts.month, parts.day, 0, 0, 0, timeZone);
+}
+
 function formatTime(date, timeZone = "Asia/Kolkata") {
   if (!date || isNaN(date.getTime())) return "--:--";
   return new Intl.DateTimeFormat("en-IN", {
@@ -148,18 +231,21 @@ const GAURI_ORDER = [
  */
 function calculatePanchangam(date = new Date(), lat = 17.3850, lng = 78.4867, elevation = 500, timeZone = "Asia/Kolkata") {
   const observer = new Astronomy.Observer(lat, lng, elevation);
-  
-  const midnightToday = new Date(date);
-  midnightToday.setHours(0, 0, 0, 0);
+  const localParts = getZonedParts(date, timeZone);
+
+  // Start the rise/set search from local midnight in the selected city's time zone.
+  const midnightToday = getStartOfLocalDay(date, timeZone);
 
   const sunriseEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, +1, midnightToday, 1);
   const sunsetEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, -1, midnightToday, 1);
   
   const sunrise = sunriseEvent ? sunriseEvent.date : new Date(midnightToday.getTime() + 6 * 3600 * 1000);
   const sunset = sunsetEvent ? sunsetEvent.date : new Date(midnightToday.getTime() + 18 * 3600 * 1000);
+  const dayDurationMs = sunset.getTime() - sunrise.getTime();
+  const solarNoon = new Date(sunrise.getTime() + dayDurationMs / 2);
 
   // Search Next Sunrise for Night Choghadiya
-  const nextMidnight = new Date(midnightToday.getTime() + 24 * 3600 * 1000);
+  const nextMidnight = getStartOfLocalDay(new Date(midnightToday.getTime() + 36 * 3600 * 1000), timeZone);
   const nextSunriseEvent = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, +1, nextMidnight, 1);
   const nextSunrise = nextSunriseEvent ? nextSunriseEvent.date : new Date(nextMidnight.getTime() + 6 * 3600 * 1000);
 
@@ -171,7 +257,29 @@ function calculatePanchangam(date = new Date(), lat = 17.3850, lng = 78.4867, el
   const evalTime = date;
   const astroTime = new Astronomy.AstroTime(evalTime);
   const jd = astroTime.ut + 2451545.0;
+  const julianCenturies = (jd - 2451545.0) / 36525.0;
   const ayanamsha = getLahiriAyanamsha(jd);
+
+  let solarDeclinationDeg = null;
+  let approxHourAngleDeg = null;
+  try {
+    const solarNoonTime = new Astronomy.AstroTime(solarNoon);
+    const sunEquator = Astronomy.Equator(Astronomy.Body.Sun, solarNoonTime, observer, true, true);
+    solarDeclinationDeg = sunEquator.dec;
+
+    const latRad = lat * Astronomy.DEG2RAD;
+    const decRad = solarDeclinationDeg * Astronomy.DEG2RAD;
+    const horizonAltitudeRad = -0.833 * Astronomy.DEG2RAD;
+    const cosHourAngle =
+      (Math.sin(horizonAltitudeRad) - Math.sin(latRad) * Math.sin(decRad)) /
+      (Math.cos(latRad) * Math.cos(decRad));
+
+    if (cosHourAngle >= -1 && cosHourAngle <= 1) {
+      approxHourAngleDeg = Math.acos(cosHourAngle) * Astronomy.RAD2DEG;
+    }
+  } catch (err) {
+    // Solar geometry is educational metadata; never fail the Panchangam because of it.
+  }
 
   const sunEcliptic = Astronomy.Ecliptic(Astronomy.GeoVector(Astronomy.Body.Sun, astroTime, false));
   const moonEcliptic = Astronomy.Ecliptic(Astronomy.GeoVector(Astronomy.Body.Moon, astroTime, false));
@@ -242,7 +350,7 @@ function calculatePanchangam(date = new Date(), lat = 17.3850, lng = 78.4867, el
   const upcomingKarana = getKarana((karanaIndex + 1) % 60);
 
   // 5. VAARAM
-  const effectiveDay = date < sunrise ? (date.getDay() + 6) % 7 : date.getDay();
+  const effectiveDay = date < sunrise ? (localParts.weekday + 6) % 7 : localParts.weekday;
   const vaaramObj = VAARAMS[effectiveDay];
 
   // 6. RASI (CHANDRA & SURYA) & CHANDRASHTAMA
@@ -272,7 +380,6 @@ function calculatePanchangam(date = new Date(), lat = 17.3850, lng = 78.4867, el
   const ruthuvuObj = RUTHUVULU[ruthuIndex] || RUTHUVULU[0];
 
   // 8. TIMINGS & MUHURTHAMS
-  const dayDurationMs = sunset.getTime() - sunrise.getTime();
   const nightDurationMs = nextSunrise.getTime() - sunset.getTime();
   const daySlotMs = dayDurationMs / 8;
   const nightSlotMs = nightDurationMs / 8;
@@ -383,8 +490,8 @@ function calculatePanchangam(date = new Date(), lat = 17.3850, lng = 78.4867, el
   });
 
   // 10. FESTIVAL BANNER (Today's festival or next major festival alert)
-  const todayMonth = evalTime.getMonth() + 1;
-  const todayDay = evalTime.getDate();
+  const todayMonth = localParts.month;
+  const todayDay = localParts.day;
   const currentFestival = TELUGU_FESTIVALS.find(f => f.month === todayMonth && Math.abs(f.day - todayDay) <= 1) || null;
   const nextFestival = TELUGU_FESTIVALS.find(f => (f.month > todayMonth) || (f.month === todayMonth && f.day >= todayDay)) || TELUGU_FESTIVALS[0];
 
@@ -402,11 +509,14 @@ function calculatePanchangam(date = new Date(), lat = 17.3850, lng = 78.4867, el
     currentPada: n.id === nakshatraObj.id ? pada : null
   }));
 
+  const localDateString = `${localParts.year}-${String(localParts.month).padStart(2, "0")}-${String(localParts.day).padStart(2, "0")}`;
+  const localTimeString = `${String(localParts.hour).padStart(2, "0")}:${String(localParts.minute).padStart(2, "0")}`;
+
   return {
     metadata: {
       calculatedAt: evalTime.toISOString(),
       formattedDate: formatDate(evalTime, timeZone),
-      isoDate: evalTime.toISOString().split('T')[0],
+      isoDate: localDateString,
       location: { lat, lng, elevation, timeZone },
       ayanamshaDegrees: ayanamsha.toFixed(4)
     },
@@ -417,6 +527,77 @@ function calculatePanchangam(date = new Date(), lat = 17.3850, lng = 78.4867, el
       moonset: moonset ? formatTime(moonset, timeZone) : "No Moonset",
       sunSiderealLon: sunSiderealLon.toFixed(2),
       moonSiderealLon: moonSiderealLon.toFixed(2)
+    },
+    calculations: {
+      selected: {
+        localDate: localDateString,
+        localTime: localTimeString,
+        timeZone,
+        weekday: vaaramObj.english,
+        weekdayTe: vaaramObj.telugu,
+        instantISO: evalTime.toISOString()
+      },
+      ayanamsha: {
+        julianDay: Number(jd.toFixed(6)),
+        julianCenturies: Number(julianCenturies.toFixed(6)),
+        degrees: Number(ayanamsha.toFixed(4))
+      },
+      sunriseSunset: {
+        latitude: lat,
+        longitude: lng,
+        elevationMeters: elevation,
+        timeZone,
+        searchStartLocalMidnightISO: midnightToday.toISOString(),
+        sunriseISO: sunrise.toISOString(),
+        sunsetISO: sunset.toISOString(),
+        sunrise: formatTime(sunrise, timeZone),
+        solarNoon: formatTime(solarNoon, timeZone),
+        sunset: formatTime(sunset, timeZone),
+        dayLengthMinutes: Number((dayDurationMs / 60000).toFixed(2)),
+        solarDeclinationDeg: solarDeclinationDeg === null ? null : Number(solarDeclinationDeg.toFixed(3)),
+        hourAngleDeg: approxHourAngleDeg === null ? null : Number(approxHourAngleDeg.toFixed(3)),
+        altitudeThresholdDeg: -0.833,
+        method: "Astronomy.SearchRiseSet"
+      },
+      tithi: {
+        sunTropicalLon: Number(sunTropicalLon.toFixed(4)),
+        moonTropicalLon: Number(moonTropicalLon.toFixed(4)),
+        elongationDeg: Number(tithiDiff.toFixed(4)),
+        index: tithiIndex,
+        number: tithiIndex + 1,
+        segmentDegrees: Number(tithiDegInCurrent.toFixed(4)),
+        completedPct: tithiCompletedPct,
+        nextBoundaryDeg: nextTithiAngle,
+        endsAt: formatTime(tithiEndTime, timeZone)
+      },
+      nakshatra: {
+        moonSiderealLon: Number(moonSiderealLon.toFixed(4)),
+        spanDegrees: Number(nakshatraSpan.toFixed(4)),
+        index: nakshatraIndex,
+        number: nakshatraIndex + 1,
+        positionDegrees: Number((moonSiderealLon % nakshatraSpan).toFixed(4)),
+        pada,
+        nextBoundaryDeg: Number(nextNakshatraAngle.toFixed(4)),
+        endsAt: formatTime(nakshatraEndTime, timeZone)
+      },
+      rashi: {
+        moon: {
+          siderealLon: Number(moonSiderealLon.toFixed(4)),
+          index: chandraRasiIdx,
+          number: chandraRasiIdx + 1,
+          telugu: chandraRasi.telugu,
+          english: chandraRasi.english,
+          degreeInRasi: Number((moonSiderealLon % 30).toFixed(3))
+        },
+        sun: {
+          siderealLon: Number(sunSiderealLon.toFixed(4)),
+          index: suryaRasiIdx,
+          number: suryaRasiIdx + 1,
+          telugu: suryaRasi.telugu,
+          english: suryaRasi.english,
+          degreeInRasi: Number((sunSiderealLon % 30).toFixed(3))
+        }
+      }
     },
     calendar: {
       samvatsaram: samvatsaramObj,
@@ -518,16 +699,17 @@ function getMonthlyCalendar(year = 2026, month = 10, lat = 17.3850, lng = 78.486
   const calendarDays = [];
 
   for (let d = 1; d <= daysInMonth; d++) {
-    const dayDate = new Date(year, month - 1, d, 6, 0, 0); // 6 AM evaluation
+    const dayDate = zonedDateTimeToUtc(year, month, d, 6, 0, 0, timeZone); // 6 AM local evaluation
+    const dayParts = getZonedParts(dayDate, timeZone);
     const panchangam = calculatePanchangam(dayDate, lat, lng, 500, timeZone);
     const fest = TELUGU_FESTIVALS.find(f => f.month === month && f.day === d) || null;
 
     calendarDays.push({
       dayNumber: d,
       dateString: `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`,
-      dayOfWeek: dayDate.getDay(),
-      dayName: VAARAMS[dayDate.getDay()].english.split(' ')[0],
-      dayNameTe: VAARAMS[dayDate.getDay()].telugu.split(' ')[0],
+      dayOfWeek: dayParts.weekday,
+      dayName: VAARAMS[dayParts.weekday].english.split(' ')[0],
+      dayNameTe: VAARAMS[dayParts.weekday].telugu.split(' ')[0],
       tithi: panchangam.panchaAngas.tithi.telugu,
       tithiEn: panchangam.panchaAngas.tithi.english,
       paksha: panchangam.calendar.paksham.telugu,
@@ -555,6 +737,10 @@ module.exports = {
   calculatePanchangam,
   getMonthlyCalendar,
   getLahiriAyanamsha,
+  getZonedParts,
+  zonedDateTimeToUtc,
+  localDateTimeToUtc,
+  getStartOfLocalDay,
   formatTime,
   formatDate
 };

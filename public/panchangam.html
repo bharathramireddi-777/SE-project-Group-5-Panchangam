@@ -323,7 +323,252 @@
 
     </div>
 
-    <!-- 5. MICRO-TIMINGS & MUHURTHAMS (AUSPICIOUS VS INAUSPICIOUS) -->
+    <!-- 5. EDUCATIONAL CALCULATION BREAKDOWN -->
+    <div class="astra-card rounded-2xl p-6 border border-white/10">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
+        <div>
+          <h2 class="text-xl font-bold astra-gradient-text tracking-wide uppercase font-display flex items-center gap-2">
+            <span>📐</span> <span data-i18n="p_calc_title">గణన విధానం (Calculation Breakdown)</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-1 max-w-3xl" data-i18n="p_calc_sub">
+            ఎంచుకున్న నగరం, తేదీ మరియు సమయానికి సూర్యోదయం, సూర్యాస్తమయం, తిథి, నక్షత్రం మరియు రాశి ఎలా లెక్కించబడతాయో దశలవారీగా తెలుసుకోండి.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-xs">
+          <span class="px-3 py-1.5 rounded-xl bg-cyan-950/50 border border-cyan-500/30 text-cyan-300 font-mono">
+            <span data-i18n="p_calc_instant_label">ఎంచుకున్న సమయం:</span>
+            <strong id="p-calc-instant" class="text-white ml-1">--</strong>
+          </span>
+          <span class="px-3 py-1.5 rounded-xl bg-violet-950/50 border border-violet-500/30 text-violet-300 font-mono">
+            <span data-i18n="p_calc_ayanamsa_label">లహిరి అయనాంశం:</span>
+            <strong id="p-calc-ayanamsa-inline" class="text-white ml-1">--</strong>
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-5">
+
+        <!-- Sunrise & Sunset Calculation -->
+        <div class="p-5 rounded-xl bg-slate-950/60 border border-cyan-500/20">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h3 class="text-sm font-bold text-cyan-300 flex items-center gap-2">
+                <span>🌅</span> <span data-i18n="p_calc_sun_title">సూర్యోదయం & సూర్యాస్తమయం గణన</span>
+              </h3>
+              <p class="text-[11px] text-slate-400 mt-1" data-i18n="p_calc_sun_desc">
+                స్థానిక అర్ధరాత్రి నుండి సూర్యుని ఎగువ అంచు హారిజన్‌ను దాటే క్షణాన్ని astronomy-engine యొక్క SearchRiseSet పునరావృతంగా వెతుకుతుంది.
+              </p>
+            </div>
+            <span class="shrink-0 text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/30 font-mono">RISE / SET</span>
+          </div>
+
+          <div class="mt-3 p-3 rounded-lg bg-black/50 border border-cyan-500/10 font-mono text-[11px] text-cyan-200 overflow-x-auto">
+            <div data-i18n="p_calc_sun_formula">SearchRiseSet(Sun, observer, ±1, localMidnight, 1 day)</div>
+            <div class="text-slate-400 mt-1" data-i18n="p_calc_sun_geometry">cos H₀ = (sin h₀ − sin φ · sin δ) / (cos φ · cos δ)</div>
+          </div>
+
+          <div class="mt-3 grid grid-cols-2 gap-2">
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_lat_lng">అక్షాంశం / రేఖాంశం</div>
+              <div id="p-calc-observer" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_jd">జూలియన్ డే (JD)</div>
+              <div id="p-calc-jd" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_declination">సూర్య క్రాంతి (δ)</div>
+              <div id="p-calc-declination" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_hour_angle">గంట కోణం (H₀)</div>
+              <div id="p-calc-hour-angle" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+          </div>
+
+          <div class="mt-3 grid grid-cols-3 gap-2">
+            <div class="p-2.5 rounded-lg bg-cyan-950/30 border border-cyan-500/20 text-center">
+              <div class="text-[10px] text-cyan-400" data-i18n="p_calc_sunrise">సూర్యోదయం</div>
+              <div id="p-calc-sunrise" class="text-sm font-bold font-mono text-cyan-200 mt-0.5">--:--</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-amber-950/30 border border-amber-500/20 text-center">
+              <div class="text-[10px] text-amber-400" data-i18n="p_calc_solar_noon">సౌర మధ్యాహ్నం</div>
+              <div id="p-calc-solar-noon" class="text-sm font-bold font-mono text-amber-200 mt-0.5">--:--</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-rose-950/30 border border-rose-500/20 text-center">
+              <div class="text-[10px] text-rose-400" data-i18n="p_calc_sunset">సూర్యాస్తమయం</div>
+              <div id="p-calc-sunset" class="text-sm font-bold font-mono text-rose-200 mt-0.5">--:--</div>
+            </div>
+          </div>
+
+          <div class="mt-3 flex items-center justify-between p-2.5 rounded-lg bg-white/[0.03] border border-white/5">
+            <span class="text-[11px] text-slate-400" data-i18n="p_calc_daylight">పగటి వెలుగు వ్యవధి</span>
+            <strong id="p-calc-daylength" class="text-xs font-mono text-cyan-300">--</strong>
+          </div>
+
+          <p class="text-[10px] text-slate-500 mt-3 leading-relaxed" data-i18n="p_calc_sun_note">
+            గమనిక: పై cos H₀ సమీకరణం భావనాత్మకమైనది. వాస్తవ సమయాలు SearchRiseSet ద్వారా ఖచ్చితంగా లెక్కించబడతాయి.
+          </p>
+        </div>
+
+        <!-- Tithi Calculation -->
+        <div class="p-5 rounded-xl bg-slate-950/60 border border-cyan-500/20">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h3 class="text-sm font-bold text-cyan-300 flex items-center gap-2">
+                <span>🌙</span> <span data-i18n="p_calc_tithi_title">తిథి గణన</span>
+              </h3>
+              <p class="text-[11px] text-slate-400 mt-1" data-i18n="p_calc_tithi_desc">
+                సూర్యుడు మరియు చంద్రుని ట్రాపికల్ రేఖాంశాల తేడా ప్రతి 12°కు ఒక తిథిగా ఏర్పడుతుంది.
+              </p>
+            </div>
+            <span class="shrink-0 text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/30 font-mono">Δλ / 12°</span>
+          </div>
+
+          <div class="mt-3 p-3 rounded-lg bg-black/50 border border-cyan-500/10 font-mono text-[11px] text-cyan-200 overflow-x-auto">
+            <div data-i18n="p_calc_tithi_formula">Δλ = (λMoon − λSun) mod 360°; Tithi = floor(Δλ / 12°) + 1</div>
+          </div>
+
+          <div class="mt-3 grid grid-cols-2 gap-2">
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_sun_tropical">సూర్య ట్రాపికల్ రేఖాంశం (λSun)</div>
+              <div id="p-calc-tithi-sun" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_moon_tropical">చంద్ర ట్రాపికల్ రేఖాంశం (λMoon)</div>
+              <div id="p-calc-tithi-moon" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_elongation">కోణీయ దూరం (Δλ)</div>
+              <div id="p-calc-tithi-diff" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-cyan-950/30 border border-cyan-500/20">
+              <div class="text-[10px] uppercase tracking-wide text-cyan-400" data-i18n="p_calc_current_tithi">ప్రస్తుత తిథి</div>
+              <div id="p-calc-tithi-name" class="text-sm font-bold text-cyan-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_tithi_progress">తిథిలో పూర్తయిన భాగం</div>
+              <div id="p-calc-tithi-progress" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_ends_at">ముగింపు సమయం</div>
+              <div id="p-calc-tithi-end" class="text-xs font-mono text-cyan-300 mt-0.5">--</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nakshatra Calculation -->
+        <div class="p-5 rounded-xl bg-slate-950/60 border border-amber-500/20">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h3 class="text-sm font-bold text-amber-300 flex items-center gap-2">
+                <span>✨</span> <span data-i18n="p_calc_nak_title">నక్షత్ర గణన</span>
+              </h3>
+              <p class="text-[11px] text-slate-400 mt-1" data-i18n="p_calc_nak_desc">
+                లహిరి అయనాంశాన్ని తీసివేసి చంద్రుని సాయిడీరియల్ రేఖాంశాన్ని 13°20′ విభాగాలుగా విభజిస్తారు.
+              </p>
+            </div>
+            <span class="shrink-0 text-[10px] px-2 py-0.5 rounded-full bg-amber-950 text-amber-300 border border-amber-500/30 font-mono">360° / 27</span>
+          </div>
+
+          <div class="mt-3 p-3 rounded-lg bg-black/50 border border-amber-500/10 font-mono text-[11px] text-amber-200 overflow-x-auto">
+            <div data-i18n="p_calc_nak_formula">λsid = (λMoon − ayanamsha) mod 360°; Nakshatra = floor(λsid / (360°/27))</div>
+          </div>
+
+          <div class="mt-3 grid grid-cols-2 gap-2">
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_moon_sidereal">చంద్ర సాయిడీరియల్ రేఖాంశం (λsid)</div>
+              <div id="p-calc-nak-sidereal" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_nak_span">నక్షత్ర విభాగం</div>
+              <div id="p-calc-nak-span" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-amber-950/30 border border-amber-500/20">
+              <div class="text-[10px] uppercase tracking-wide text-amber-400" data-i18n="p_calc_current_nak">ప్రస్తుత నక్షత్రం</div>
+              <div id="p-calc-nak-name" class="text-sm font-bold text-amber-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_nak_position">నక్షత్రంలో స్థానం</div>
+              <div id="p-calc-nak-position" class="text-xs font-mono text-slate-200 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_pada">పాదం</div>
+              <div id="p-calc-nak-pada" class="text-xs font-mono text-amber-300 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_ends_at">ముగింపు సమయం</div>
+              <div id="p-calc-nak-end" class="text-xs font-mono text-amber-300 mt-0.5">--</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rashi Calculation -->
+        <div class="p-5 rounded-xl bg-slate-950/60 border border-violet-500/20">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h3 class="text-sm font-bold text-violet-300 flex items-center gap-2">
+                <span>♈</span> <span data-i18n="p_calc_rashi_title">రాశి గణన</span>
+              </h3>
+              <p class="text-[11px] text-slate-400 mt-1" data-i18n="p_calc_rashi_desc">
+                సాయిడీరియల్ రేఖాంశాన్ని 30° విభాగాలుగా విభజించి రాశిని నిర్ణయిస్తారు.
+              </p>
+            </div>
+            <span class="shrink-0 text-[10px] px-2 py-0.5 rounded-full bg-violet-950 text-violet-300 border border-violet-500/30 font-mono">λsid / 30°</span>
+          </div>
+
+          <div class="mt-3 p-3 rounded-lg bg-black/50 border border-violet-500/10 font-mono text-[11px] text-violet-200 overflow-x-auto">
+            <div data-i18n="p_calc_rashi_formula">Rashi = floor(λsid / 30°) + 1</div>
+          </div>
+
+          <div class="mt-3 space-y-2">
+            <div class="p-3 rounded-lg bg-violet-950/20 border border-violet-500/20">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10px] uppercase tracking-wide text-violet-400" data-i18n="p_calc_moon_rashi">చంద్ర రాశి</span>
+                <span id="p-calc-rashi-moon-lon" class="text-[10px] font-mono text-slate-400">--</span>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <strong id="p-calc-rashi-moon-name" class="text-base font-bold text-violet-200">--</strong>
+                <span id="p-calc-rashi-moon-deg" class="text-xs font-mono text-slate-300">--</span>
+              </div>
+            </div>
+            <div class="p-3 rounded-lg bg-amber-950/20 border border-amber-500/20">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10px] uppercase tracking-wide text-amber-400" data-i18n="p_calc_sun_rashi">సూర్య రాశి</span>
+                <span id="p-calc-rashi-sun-lon" class="text-[10px] font-mono text-slate-400">--</span>
+              </div>
+              <div class="flex items-baseline justify-between gap-2">
+                <strong id="p-calc-rashi-sun-name" class="text-base font-bold text-amber-200">--</strong>
+                <span id="p-calc-rashi-sun-deg" class="text-xs font-mono text-slate-300">--</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3 grid grid-cols-2 gap-2">
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_degree_in_rashi">రాశిలో డిగ్రీ</div>
+              <div class="text-xs font-mono text-slate-200 mt-0.5" data-i18n="p_calc_moon">చంద్రుడు</div>
+              <div id="p-calc-rashi-moon-deg-2" class="text-xs font-mono text-violet-300 mt-0.5">--</div>
+            </div>
+            <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+              <div class="text-[10px] uppercase tracking-wide text-slate-500" data-i18n="p_calc_degree_in_rashi">రాశిలో డిగ్రీ</div>
+              <div class="text-xs font-mono text-slate-200 mt-0.5" data-i18n="p_calc_sun">సూర్యుడు</div>
+              <div id="p-calc-rashi-sun-deg-2" class="text-xs font-mono text-amber-300 mt-0.5">--</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-5 p-4 rounded-xl bg-amber-950/20 border border-amber-500/20">
+        <h4 class="text-xs font-bold text-amber-300 uppercase tracking-wide mb-1" data-i18n="p_calc_note_title">గణన గమనిక</h4>
+        <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="p_calc_note_text">
+          అన్ని విలువలు astronomy-engine ద్వారా లెక్కించబడతాయి. లహిరి (చిత్ర పక్ష) అయనాంశం ట్రాపికల్ రేఖాంశాలను సాయిడీరియల్ (నిరయన) రేఖాంశాలుగా మారుస్తుంది. తిథి, నక్షత్రం మరియు రాశి విలువలు ఎంచుకున్న తేదీ మరియు సమయానికి చెందినవి; సూర్యోదయం/సూర్యాస్తమయం ఆ తేదీకి మాత్రమే.
+        </p>
+      </div>
+    </div>
+
+    <!-- 6. MICRO-TIMINGS & MUHURTHAMS (AUSPICIOUS VS INAUSPICIOUS) -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
       <!-- Good Timings (Auspicious) -->
@@ -424,7 +669,7 @@
 
     </div>
 
-    <!-- 6. GAURI PANCHANGAM / CHOGHADIYA (DAY & NIGHT SEGMENTS) -->
+    <!-- 7. GAURI PANCHANGAM / CHOGHADIYA (DAY & NIGHT SEGMENTS) -->
     <div class="astra-card rounded-2xl p-6 border border-white/10">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-3 border-b border-white/10">
         <div>
@@ -585,7 +830,12 @@
       document.getElementById('p-moonrise').textContent = data.astronomy.moonrise;
       document.getElementById('p-moonset').textContent = data.astronomy.moonset;
       document.getElementById('p-location-info').textContent = `${data.metadata.location.lat.toFixed(2)}°N, ${data.metadata.location.lng.toFixed(2)}°E (${data.metadata.location.timeZone})`;
-      document.getElementById('p-day-duration').textContent = isTe ? '11 గంటల 57 నిమిషాలు' : '11h 57m';
+      const dayLengthMinutes = data.calculations && data.calculations.sunriseSunset
+        ? data.calculations.sunriseSunset.dayLengthMinutes
+        : null;
+      document.getElementById('p-day-duration').textContent = dayLengthMinutes
+        ? formatDuration(dayLengthMinutes, isTe)
+        : '--';
 
       // Planetary Rasis
       if (data.astrology) {
@@ -634,6 +884,68 @@
 
       // Render Choghadiya
       renderChoghadiyaTable();
+
+      // Educational calculation breakdown
+      updateCalculationBreakdown(data, isTe);
+    }
+
+    function formatDuration(totalMinutes, isTe) {
+      const rounded = Math.round(totalMinutes);
+      const hours = Math.floor(rounded / 60);
+      const minutes = rounded % 60;
+      return isTe ? `${hours} గంటల ${minutes} నిమిషాలు` : `${hours}h ${minutes}m`;
+    }
+
+    function updateCalculationBreakdown(data, isTe) {
+      const c = data.calculations;
+      if (!c) return;
+
+      const setText = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      };
+      const deg = (value) => `${Number(value).toFixed(2)}°`;
+      const rashiLabel = (r) => isTe ? `${r.telugu} (${r.english.split(' (')[0]})` : r.english;
+
+      setText('p-calc-instant', `${c.selected.localDate} ${c.selected.localTime} • ${c.selected.timeZone}`);
+      setText('p-calc-ayanamsa-inline', `${Number(c.ayanamsha.degrees).toFixed(4)}°`);
+
+      const sun = c.sunriseSunset;
+      setText('p-calc-observer', `${Number(sun.latitude).toFixed(4)}°, ${Number(sun.longitude).toFixed(4)}° • ${sun.elevationMeters} m`);
+      setText('p-calc-jd', Number(c.ayanamsha.julianDay).toFixed(2));
+      setText('p-calc-declination', sun.solarDeclinationDeg === null ? '--' : deg(sun.solarDeclinationDeg));
+      setText('p-calc-hour-angle', sun.hourAngleDeg === null ? '--' : deg(sun.hourAngleDeg));
+      setText('p-calc-sunrise', sun.sunrise);
+      setText('p-calc-solar-noon', sun.solarNoon);
+      setText('p-calc-sunset', sun.sunset);
+      setText('p-calc-daylength', formatDuration(sun.dayLengthMinutes, isTe));
+
+      const t = c.tithi;
+      setText('p-calc-tithi-sun', deg(t.sunTropicalLon));
+      setText('p-calc-tithi-moon', deg(t.moonTropicalLon));
+      setText('p-calc-tithi-diff', deg(t.elongationDeg));
+      setText('p-calc-tithi-name', isTe ? data.panchaAngas.tithi.telugu : data.panchaAngas.tithi.english);
+      setText('p-calc-tithi-progress', `${Number(t.completedPct).toFixed(1)}% (${deg(t.segmentDegrees)} / 12°)`);
+      setText('p-calc-tithi-end', t.endsAt);
+
+      const n = c.nakshatra;
+      setText('p-calc-nak-sidereal', deg(n.moonSiderealLon));
+      setText('p-calc-nak-span', `${Number(n.spanDegrees).toFixed(4)}°`);
+      setText('p-calc-nak-name', isTe ? data.panchaAngas.nakshatram.telugu : data.panchaAngas.nakshatram.english);
+      setText('p-calc-nak-position', `${deg(n.positionDegrees)} / ${deg(n.spanDegrees)}`);
+      setText('p-calc-nak-pada', isTe ? `పాదం ${n.pada}` : `Pada ${n.pada}`);
+      setText('p-calc-nak-end', n.endsAt);
+
+      const moonRashi = c.rashi.moon;
+      const sunRashi = c.rashi.sun;
+      setText('p-calc-rashi-moon-lon', deg(moonRashi.siderealLon));
+      setText('p-calc-rashi-moon-name', rashiLabel(moonRashi));
+      setText('p-calc-rashi-moon-deg', deg(moonRashi.degreeInRasi));
+      setText('p-calc-rashi-moon-deg-2', deg(moonRashi.degreeInRasi));
+      setText('p-calc-rashi-sun-lon', deg(sunRashi.siderealLon));
+      setText('p-calc-rashi-sun-name', rashiLabel(sunRashi));
+      setText('p-calc-rashi-sun-deg', deg(sunRashi.degreeInRasi));
+      setText('p-calc-rashi-sun-deg-2', deg(sunRashi.degreeInRasi));
     }
 
     function switchChoghadiyaTab(mode) {

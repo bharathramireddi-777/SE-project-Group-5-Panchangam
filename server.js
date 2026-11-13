@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { calculatePanchangam, getMonthlyCalendar } = require('./engine');
+const { calculatePanchangam, getMonthlyCalendar, localDateTimeToUtc } = require('./engine');
 const { POPULAR_CITIES, RASIS, NAKSHATRAMS } = require('./constants');
 
 const app = express();
@@ -44,15 +44,37 @@ app.get('/festivals', (req, res) => {
 // API: Daily Panchangam
 app.get('/api/panchangam', (req, res) => {
   try {
-    const { date, lat, lng, timeZone } = req.query;
-    
-    const evalDate = date ? new Date(date) : new Date();
+    const { date, time, lat, lng, timeZone } = req.query;
     const evalLat = lat ? parseFloat(lat) : 17.3850;
     const evalLng = lng ? parseFloat(lng) : 78.4867;
     const evalTz = timeZone || "Asia/Kolkata";
 
+    let evalDate;
+    if (date) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        return res.status(400).json({ error: "Invalid date parameter. Use YYYY-MM-DD format." });
+      }
+      const [year, month, day] = date.split('-').map(Number);
+      const dateProbe = new Date(Date.UTC(year, month - 1, day));
+      if (dateProbe.getUTCFullYear() !== year || dateProbe.getUTCMonth() !== month - 1 || dateProbe.getUTCDate() !== day) {
+        return res.status(400).json({ error: "Invalid date parameter. Date does not exist." });
+      }
+      if (time) {
+        if (!/^\d{2}:\d{2}$/.test(time)) {
+          return res.status(400).json({ error: "Invalid time parameter. Use HH:MM format." });
+        }
+        const [hours, minutes] = time.split(':').map(Number);
+        if (hours > 23 || minutes > 59) {
+          return res.status(400).json({ error: "Invalid time parameter. Hours must be 00-23 and minutes 00-59." });
+        }
+      }
+      evalDate = time ? localDateTimeToUtc(date, time, evalTz) : new Date(date);
+    } else {
+      evalDate = new Date();
+    }
+
     if (isNaN(evalDate.getTime())) {
-      return res.status(400).json({ error: "Invalid date parameter. Use YYYY-MM-DD format." });
+      return res.status(400).json({ error: "Invalid date/time or time zone parameter." });
     }
 
     const panchangam = calculatePanchangam(evalDate, evalLat, evalLng, 500, evalTz);

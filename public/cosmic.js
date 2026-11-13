@@ -278,6 +278,55 @@ const I18N = {
     p_dur_sub: "సర్వ కార్య ప్రతిబంధక ఘడియలు",
     p_varjyam_sub: "నక్షత్ర ఆధారిత విష ఘడియలు",
 
+    // Educational Calculation Breakdown
+    p_calc_title: "గణన విధానం (Calculation Breakdown)",
+    p_calc_sub: "ఎంచుకున్న నగరం, తేదీ మరియు సమయానికి సూర్యోదయం, సూర్యాస్తమయం, తిథి, నక్షత్రం మరియు రాశి ఎలా లెక్కించబడతాయో దశలవారీగా తెలుసుకోండి.",
+    p_calc_instant_label: "ఎంచుకున్న సమయం:",
+    p_calc_ayanamsa_label: "లహిరి అయనాంశం:",
+    p_calc_inputs_label: "ఇన్‌పుట్ విలువలు",
+    p_calc_result_label: "ఫలితం",
+    p_calc_sun_title: "సూర్యోదయం & సూర్యాస్తమయం గణన",
+    p_calc_sun_desc: "స్థానిక అర్ధరాత్రి నుండి సూర్యుని ఎగువ అంచు హారిజన్‌ను దాటే క్షణాన్ని astronomy-engine యొక్క SearchRiseSet పునరావృతంగా వెతుకుతుంది.",
+    p_calc_sun_formula: "SearchRiseSet(Sun, observer, ±1, localMidnight, 1 day)",
+    p_calc_sun_geometry: "cos H₀ = (sin h₀ − sin φ · sin δ) / (cos φ · cos δ)",
+    p_calc_sun_method: "పద్ధతి: Astronomy.SearchRiseSet (వాతావరణ వక్రీభవనం + ఎత్తు సర్దుబాటు)",
+    p_calc_lat_lng: "అక్షాంశం / రేఖాంశం",
+    p_calc_jd: "జూలియన్ డే (JD)",
+    p_calc_declination: "సూర్య క్రాంతి (δ)",
+    p_calc_hour_angle: "గంట కోణం (H₀)",
+    p_calc_sunrise: "సూర్యోదయం",
+    p_calc_solar_noon: "సౌర మధ్యాహ్నం",
+    p_calc_sunset: "సూర్యాస్తమయం",
+    p_calc_daylight: "పగటి వెలుగు వ్యవధి",
+    p_calc_sun_note: "గమనిక: పై cos H₀ సమీకరణం భావనాత్మకమైనది. వాస్తవ సమయాలు SearchRiseSet ద్వారా ఖచ్చితంగా లెక్కించబడతాయి.",
+    p_calc_tithi_title: "తిథి గణన",
+    p_calc_tithi_desc: "సూర్యుడు మరియు చంద్రుని ట్రాపికల్ రేఖాంశాల తేడా ప్రతి 12°కు ఒక తిథిగా ఏర్పడుతుంది.",
+    p_calc_tithi_formula: "Δλ = (λMoon − λSun) mod 360°; Tithi = floor(Δλ / 12°) + 1",
+    p_calc_moon_tropical: "చంద్ర ట్రాపికల్ రేఖాంశం (λMoon)",
+    p_calc_sun_tropical: "సూర్య ట్రాపికల్ రేఖాంశం (λSun)",
+    p_calc_elongation: "కోణీయ దూరం (Δλ)",
+    p_calc_current_tithi: "ప్రస్తుత తిథి",
+    p_calc_tithi_progress: "తిథిలో పూర్తయిన భాగం",
+    p_calc_ends_at: "ముగింపు సమయం",
+    p_calc_nak_title: "నక్షత్ర గణన",
+    p_calc_nak_desc: "లహిరి అయనాంశాన్ని తీసివేసి చంద్రుని సాయిడీరియల్ రేఖాంశాన్ని 13°20′ విభాగాలుగా విభజిస్తారు.",
+    p_calc_nak_formula: "λsid = (λMoon − ayanamsha) mod 360°; Nakshatra = floor(λsid / (360°/27))",
+    p_calc_moon_sidereal: "చంద్ర సాయిడీరియల్ రేఖాంశం (λsid)",
+    p_calc_nak_span: "నక్షత్ర విభాగం",
+    p_calc_current_nak: "ప్రస్తుత నక్షత్రం",
+    p_calc_nak_position: "నక్షత్రంలో స్థానం",
+    p_calc_pada: "పాదం",
+    p_calc_rashi_title: "రాశి గణన",
+    p_calc_rashi_desc: "సాయిడీరియల్ రేఖాంశాన్ని 30° విభాగాలుగా విభజించి రాశిని నిర్ణయిస్తారు.",
+    p_calc_rashi_formula: "Rashi = floor(λsid / 30°) + 1",
+    p_calc_moon_rashi: "చంద్ర రాశి",
+    p_calc_sun_rashi: "సూర్య రాశి",
+    p_calc_degree_in_rashi: "రాశిలో డిగ్రీ",
+    p_calc_moon: "చంద్రుడు",
+    p_calc_sun: "సూర్యుడు",
+    p_calc_note_title: "గణన గమనిక",
+    p_calc_note_text: "అన్ని విలువలు astronomy-engine ద్వారా లెక్కించబడతాయి. లహిరి (చిత్ర పక్ష) అయనాంశం ట్రాపికల్ రేఖాంశాలను సాయిడీరియల్ (నిరయన) రేఖాంశాలుగా మారుస్తుంది. తిథి, నక్షత్రం మరియు రాశి విలువలు ఎంచుకున్న తేదీ మరియు సమయానికి చెందినవి; సూర్యోదయం/సూర్యాస్తమయం ఆ తేదీకి మాత్రమే.",
+
     // Calendar Legends
     cal_leg_today: "నేటి దినం (Today)",
     cal_leg_pournami: "పౌర్ణమి (Full Moon)",
@@ -567,6 +616,55 @@ const I18N = {
     p_dur_sub: "Obstructive slots for auspicious actions",
     p_varjyam_sub: "Inauspicious star-based duration",
 
+    // Educational Calculation Breakdown
+    p_calc_title: "Calculation Breakdown",
+    p_calc_sub: "Step-by-step demonstration of how sunrise, sunset, tithi, nakshatra, and rashi are derived for the selected city, date, and time.",
+    p_calc_instant_label: "Selected instant:",
+    p_calc_ayanamsa_label: "Lahiri Ayanamsha:",
+    p_calc_inputs_label: "Input values",
+    p_calc_result_label: "Result",
+    p_calc_sun_title: "Sunrise & Sunset Calculation",
+    p_calc_sun_desc: "Starting from local midnight, astronomy-engine's SearchRiseSet iteratively finds the moment the Sun's upper limb crosses the local horizon.",
+    p_calc_sun_formula: "SearchRiseSet(Sun, observer, ±1, localMidnight, 1 day)",
+    p_calc_sun_geometry: "cos H₀ = (sin h₀ − sin φ · sin δ) / (cos φ · cos δ)",
+    p_calc_sun_method: "Method: Astronomy.SearchRiseSet (atmospheric refraction + elevation correction)",
+    p_calc_lat_lng: "Latitude / Longitude",
+    p_calc_jd: "Julian Day (JD)",
+    p_calc_declination: "Solar Declination (δ)",
+    p_calc_hour_angle: "Hour Angle (H₀)",
+    p_calc_sunrise: "Sunrise",
+    p_calc_solar_noon: "Solar Noon",
+    p_calc_sunset: "Sunset",
+    p_calc_daylight: "Daylight Duration",
+    p_calc_sun_note: "Note: the cos H₀ equation above is conceptual. The displayed times are found precisely by SearchRiseSet.",
+    p_calc_tithi_title: "Tithi Calculation",
+    p_calc_tithi_desc: "The angular separation between the Sun and Moon creates one tithi for every 12 degrees.",
+    p_calc_tithi_formula: "Δλ = (λMoon − λSun) mod 360°; Tithi = floor(Δλ / 12°) + 1",
+    p_calc_moon_tropical: "Moon Tropical Longitude (λMoon)",
+    p_calc_sun_tropical: "Sun Tropical Longitude (λSun)",
+    p_calc_elongation: "Angular Separation (Δλ)",
+    p_calc_current_tithi: "Current Tithi",
+    p_calc_tithi_progress: "Completed within Tithi",
+    p_calc_ends_at: "Ends at",
+    p_calc_nak_title: "Nakshatra Calculation",
+    p_calc_nak_desc: "Subtract the Lahiri ayanamsha from the Moon's tropical longitude, then divide the sidereal longitude into 13°20′ segments.",
+    p_calc_nak_formula: "λsid = (λMoon − ayanamsha) mod 360°; Nakshatra = floor(λsid / (360°/27))",
+    p_calc_moon_sidereal: "Moon Sidereal Longitude (λsid)",
+    p_calc_nak_span: "Nakshatra Span",
+    p_calc_current_nak: "Current Nakshatra",
+    p_calc_nak_position: "Position within Nakshatra",
+    p_calc_pada: "Pada",
+    p_calc_rashi_title: "Rashi Calculation",
+    p_calc_rashi_desc: "Divide the sidereal longitude into 30-degree arcs to determine the zodiac sign.",
+    p_calc_rashi_formula: "Rashi = floor(λsid / 30°) + 1",
+    p_calc_moon_rashi: "Moon Rashi",
+    p_calc_sun_rashi: "Sun Rashi",
+    p_calc_degree_in_rashi: "Degree within Rashi",
+    p_calc_moon: "Moon",
+    p_calc_sun: "Sun",
+    p_calc_note_title: "Calculation Note",
+    p_calc_note_text: "All values are computed with astronomy-engine. The Lahiri (Chitra Paksha) ayanamsha converts tropical longitudes into sidereal (nirayana) longitudes. Tithi, nakshatra, and rashi reflect the selected date and time; sunrise and sunset are for the selected date.",
+
     // Calendar Legends
     cal_leg_today: "Today",
     cal_leg_pournami: "Full Moon (Pournami)",
@@ -694,12 +792,70 @@ function getStoredDate() {
   }
   const d = localStorage.getItem('telugu_panchangam_date') || localStorage.getItem('astra_date');
   if (d) return d;
-  const now = new Date();
-  return now.toISOString().split('T')[0];
+
+  const timeZone = (getStoredCity().split(',')[3] || 'Asia/Kolkata').trim();
+  return getCurrentDateInZone(timeZone);
 }
 
 function setStoredDate(dateStr) {
   localStorage.setItem('telugu_panchangam_date', dateStr);
+}
+
+function getCurrentDateInZone(timeZone) {
+  try {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(new Date());
+    const map = {};
+    parts.forEach(p => { map[p.type] = p.value; });
+    return `${map.year}-${map.month}-${map.day}`;
+  } catch (err) {
+    return new Date().toISOString().split('T')[0];
+  }
+}
+
+function getCurrentTimeInZone(timeZone) {
+  try {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone,
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23'
+    }).formatToParts(new Date());
+    const map = {};
+    parts.forEach(p => { map[p.type] = p.value; });
+    return `${map.hour}:${map.minute}`;
+  } catch (err) {
+    const now = new Date();
+    return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  }
+}
+
+function isValidTime(value) {
+  if (!/^\d{2}:\d{2}$/.test(value)) return false;
+  const [hours, minutes] = value.split(':').map(Number);
+  return hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59;
+}
+
+function getStoredTime() {
+  const urlParam = new URLSearchParams(window.location.search).get('time');
+  if (urlParam && isValidTime(urlParam)) {
+    localStorage.setItem('telugu_panchangam_time', urlParam);
+    return urlParam;
+  }
+
+  const stored = localStorage.getItem('telugu_panchangam_time');
+  if (stored && isValidTime(stored)) return stored;
+
+  const timeZone = (getStoredCity().split(',')[3] || 'Asia/Kolkata').trim();
+  return getCurrentTimeInZone(timeZone);
+}
+
+function setStoredTime(timeStr) {
+  localStorage.setItem('telugu_panchangam_time', timeStr);
 }
 
 // Helper to extract Telugu or English from strings formatted like "తెలుగు (English)"
@@ -776,7 +932,13 @@ function applyI18nTranslations(lang = null) {
 }
 
 // 5. MODERN OPENAI-STYLE CLEAN TOP NAVIGATION HEADER
+let skipNextHeaderRender = false;
+
 function renderCosmicHeader(activePage = 'home') {
+  if (skipNextHeaderRender) {
+    skipNextHeaderRender = false;
+    return;
+  }
   const lang = getStoredLang();
   const dict = I18N[lang] || I18N.te;
 
@@ -843,6 +1005,14 @@ function renderCosmicHeader(activePage = 'home') {
         <!-- Date Input (Visible on sm+) -->
         <input type="date" id="globalDatePicker" onchange="onGlobalDateChange(this.value)" class="hidden sm:inline-block bg-black/80 border border-white/10 hover:border-white/20 rounded-lg px-2 py-1 text-xs text-zinc-200 focus:outline-none cursor-pointer transition w-[115px] sm:w-[125px]">
 
+        <!-- Time Selector (Visible on sm+) -->
+        <div class="hidden sm:flex items-center bg-black/80 border border-white/10 hover:border-white/20 rounded-lg px-2 py-1 text-xs transition" title="Panchangam calculation time">
+          <span class="text-zinc-400 mr-1 text-[11px] shrink-0">🕒</span>
+          <select id="globalHourSelect" onchange="onGlobalTimePartChange()" aria-label="Hour" class="bg-transparent text-xs text-zinc-200 focus:outline-none cursor-pointer appearance-none text-center w-[30px]"></select>
+          <span class="text-zinc-500 font-mono mx-0.5">:</span>
+          <select id="globalMinuteSelect" onchange="onGlobalTimePartChange()" aria-label="Minute" class="bg-transparent text-xs text-zinc-200 focus:outline-none cursor-pointer appearance-none text-center w-[32px]"></select>
+        </div>
+
         <!-- Language Selector Dropdown (Unambiguous & Direct) -->
         <div class="flex items-center bg-black/80 border border-white/10 hover:border-white/20 rounded-lg px-2 py-1 text-xs transition">
           <span class="text-cyan-400 mr-1 text-[11px] shrink-0">🌐</span>
@@ -864,6 +1034,7 @@ function renderCosmicHeader(activePage = 'home') {
     if (citySel) citySel.value = getStoredCity();
     const dateInput = document.getElementById('globalDatePicker');
     if (dateInput) dateInput.value = getStoredDate();
+    populateTimeSelectors(getStoredTime());
     applyI18nTranslations(lang);
   }
 }
@@ -879,6 +1050,55 @@ function onGlobalCityChange(val) {
 
 function onGlobalDateChange(val) {
   setStoredDate(val);
+  if (typeof window.onDataStateChanged === 'function') {
+    window.onDataStateChanged();
+  } else {
+    location.reload();
+  }
+}
+
+function populateTimeSelectors(timeStr) {
+  const hourSelect = document.getElementById('globalHourSelect');
+  const minuteSelect = document.getElementById('globalMinuteSelect');
+  if (!hourSelect || !minuteSelect) return;
+
+  if (hourSelect.options.length === 0) {
+    for (let hour = 0; hour < 24; hour++) {
+      const value = String(hour).padStart(2, '0');
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = value;
+      option.className = 'bg-black';
+      hourSelect.appendChild(option);
+    }
+  }
+
+  if (minuteSelect.options.length === 0) {
+    for (let minute = 0; minute < 60; minute++) {
+      const value = String(minute).padStart(2, '0');
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = value;
+      option.className = 'bg-black';
+      minuteSelect.appendChild(option);
+    }
+  }
+
+  const [hour, minute] = (isValidTime(timeStr) ? timeStr : '00:00').split(':');
+  hourSelect.value = hour;
+  minuteSelect.value = minute;
+}
+
+function onGlobalTimePartChange() {
+  const hourSelect = document.getElementById('globalHourSelect');
+  const minuteSelect = document.getElementById('globalMinuteSelect');
+  if (!hourSelect || !minuteSelect) return;
+  onGlobalTimeChange(`${hourSelect.value}:${minuteSelect.value}`);
+}
+
+function onGlobalTimeChange(val) {
+  if (!isValidTime(val)) return;
+  setStoredTime(val);
   if (typeof window.onDataStateChanged === 'function') {
     window.onDataStateChanged();
   } else {
@@ -908,9 +1128,10 @@ async function fetchPanchangamData() {
   const lng = cityVal[1];
   const timeZone = cityVal[3];
   const dateVal = getStoredDate();
+  const timeVal = getStoredTime();
 
   try {
-    const res = await fetch(`/api/panchangam?date=${encodeURIComponent(dateVal)}&lat=${lat}&lng=${lng}&timeZone=${timeZone}`);
+    const res = await fetch(`/api/panchangam?date=${encodeURIComponent(dateVal)}&time=${encodeURIComponent(timeVal)}&lat=${lat}&lng=${lng}&timeZone=${timeZone}`);
     if (!res.ok) throw new Error("API error");
     return await res.json();
   } catch (err) {
