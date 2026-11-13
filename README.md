@@ -28,7 +28,13 @@ An authentic, astronomical Luni-Solar Almanac & Astrological Computation Engine 
 * Clockwise fixed 12-Rasi square grid.
 * Real-time calculation of **9 Grahas** (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) and **Lagna (Ascendant)** degrees.
 
-### 5. Multi-City & Bilingual
+### 5. 🌀 Chatur-Yuga Wheel (`/chatur-yuga`)
+* Interactive spinning wheel of the Four Yugas in their 4:3:2:1 proportion (Satya 144°, Treta 108°, Dvapara 72°, Kali 36°).
+* Pullable event timeline, event pop-ups, "Spin Cycle" and auto-orbit.
+* Source lives in `chatur-yuga-src/` (React + Vite + Tailwind); the pre-built bundle is served from `public/chatur-yuga/`.
+* After editing the source, rebuild with `npm run build:yuga`.
+
+### 6. Multi-City & Bilingual
 * Real-time location adjustments for Hyderabad, Vijayawada, Visakhapatnam, Tirupati, Warangal, Bengaluru, Dallas, etc.
 * Instant toggle between **తెలుగు** (Noto Sans Telugu) and **English**.
 * WhatsApp / Clipboard export for daily sharing.

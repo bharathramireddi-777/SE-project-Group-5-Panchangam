@@ -41,6 +41,11 @@ app.get('/festivals', (req, res) => {
   res.sendFile('festivals.html', { root: PUBLIC_DIR });
 });
 
+// Chatur-Yuga Wheel (React app, pre-built into public/chatur-yuga)
+app.get(['/chatur-yuga', '/chatur-yuga/'], (req, res) => {
+  res.sendFile('index.html', { root: path.join(PUBLIC_DIR, 'chatur-yuga') });
+});
+
 // API: Daily Panchangam
 app.get('/api/panchangam', (req, res) => {
   try {
@@ -140,5 +145,6 @@ app.listen(PORT, () => {
   console.log(` ✨ 27 Nakshatras   : http://localhost:${PORT}/nakshatralu`);
   console.log(` ⏳ Muhurthams      : http://localhost:${PORT}/muhurthams`);
   console.log(` 🎉 Festivals       : http://localhost:${PORT}/festivals`);
+  console.log(` 🌀 Chatur-Yuga     : http://localhost:${PORT}/chatur-yuga`);
   console.log(`=======================================================`);
 });
