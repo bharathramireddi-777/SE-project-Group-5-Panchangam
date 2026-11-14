@@ -138,6 +138,9 @@
       <a href="/calendar" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-white/[0.08] hover:bg-white/[0.14] border border-white/15 text-zinc-200 transition backdrop-blur-md flex items-center gap-2" data-i18n="intro_btn_calendar">
         📅 మాస క్యాలెండర్
       </a>
+      <a href="/chatur-yuga" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-white/[0.08] hover:bg-white/[0.14] border border-white/15 text-zinc-200 transition backdrop-blur-md flex items-center gap-2" data-i18n="intro_btn_yuga">
+        🌀 చతుర్యుగ చక్రం
+      </a>
     </div>
 
   </main>
@@ -592,7 +595,7 @@
 
         const badge = document.getElementById('dash-rahu-badge');
         const timerTxt = document.getElementById('dash-rahu-timer');
-        const msgTxt = document.getElementById('dash-rahu-msg');
+        const msgTxt = document.getElementById('dash-rahu-msg') || document.createElement('span');
 
         if (now < start) {
           // Upcoming

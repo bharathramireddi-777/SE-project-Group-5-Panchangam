@@ -152,3 +152,18 @@ body {
   background: rgba(255, 255, 255, 0.05);
   color: #e2e8f0;
 }
+
+/* ===== Cinzel display typography (matches the Chatur-Yuga Wheel) =====
+   Headings, brand and top navigation use Cinzel; body text, numbers,
+   tables and form fields keep Plus Jakarta Sans. Cinzel has no Telugu
+   glyphs, so Telugu text falls back to Noto Sans Telugu. */
+h1, h2, h3, h4,
+.font-display,
+.top-nav-link,
+header a[title] span.font-bold,
+a[href="/"] .tracking-tight {
+  font-family: 'Cinzel', 'Noto Sans Telugu', Georgia, serif !important;
+}
+h1, h2 { letter-spacing: .015em; font-weight: 600 !important; }
+h3, h4 { letter-spacing: .02em; }
+.top-nav-link { letter-spacing: .04em; font-weight: 600 !important; }

@@ -95,6 +95,7 @@ const I18N = {
     nav_nakshatralu: "నక్షత్రాలు",
     nav_muhurthams: "ముహూర్తాలు",
     nav_festivals: "పండుగలు",
+    nav_yuga: "చతుర్యుగాలు",
     btn_lang_toggle: "తెలుగు",
 
     // Cities
@@ -131,6 +132,7 @@ const I18N = {
     intro_verse_meaning: "తాత్పర్యం: తిథి సంపదను, వారం ఆయుష్షును, నక్షత్రం పాపనాశనాన్ని, యోగం రోగనివారణను, కరణం కార్యసిద్ధిని ప్రసాదిస్తాయి.",
     intro_btn_panchangam: "🪔 నేటి పంచాంగం చూడండి",
     intro_btn_calendar: "📅 మాస క్యాలెండర్",
+    intro_btn_yuga: "🌀 చతుర్యుగ చక్రం",
 
     // Pancha Angas 5 Subdivisions
     intro_angas_heading: "పంచాంగాలు • 5 ప్రధాన విభాగాలు (The 5 Subdivisions)",
@@ -433,6 +435,7 @@ const I18N = {
     nav_nakshatralu: "Nakshatras",
     nav_muhurthams: "Muhurthams",
     nav_festivals: "Festivals",
+    nav_yuga: "Chatur-Yuga",
     btn_lang_toggle: "English",
 
     // Cities
@@ -469,6 +472,7 @@ const I18N = {
     intro_verse_meaning: "Meaning: Tithi confers spiritual wealth; Vaaram enhances longevity; Nakshatra cleanses negative karmas; Yogam heals ailments; Karanam guarantees success in undertakings.",
     intro_btn_panchangam: "🪔 View Today's Panchangam",
     intro_btn_calendar: "📅 Monthly Calendar",
+    intro_btn_yuga: "🌀 Chatur-Yuga Wheel",
 
     // Pancha Angas 5 Subdivisions
     intro_angas_heading: "The 5 Sacred Subdivisions (Pancha-Angas)",
@@ -983,6 +987,10 @@ function renderCosmicHeader(activePage = 'home') {
         <a href="/festivals" class="top-nav-link ${activePage === 'festivals' ? 'active' : ''}">
           <span class="text-xs">🎉</span>
           <span data-i18n="nav_festivals">${dict.nav_festivals}</span>
+        </a>
+        <a href="/chatur-yuga" class="top-nav-link ${activePage === 'yuga' ? 'active' : ''}">
+          <span class="text-xs">🌀</span>
+          <span data-i18n="nav_yuga">${dict.nav_yuga}</span>
         </a>
       </nav>
 
